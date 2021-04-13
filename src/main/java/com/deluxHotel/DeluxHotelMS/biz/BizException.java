@@ -1,4 +1,4 @@
-package com.deluxHotel.DeluxHotelMS.biz.front;
+package com.deluxHotel.DeluxHotelMS.biz;
 
 public class BizException extends Exception {
 

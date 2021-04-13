@@ -1,4 +1,4 @@
-package com.deluxHotel.DeluxHotelMS.biz.front;
+package com.deluxHotel.DeluxHotelMS.biz;
 
 import java.io.File;
 import java.io.IOException;

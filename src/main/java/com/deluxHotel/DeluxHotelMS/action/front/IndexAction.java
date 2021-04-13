@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.deluxHotel.DeluxHotelMS.bean.User;
-import com.deluxHotel.DeluxHotelMS.biz.front.BizException;
-import com.deluxHotel.DeluxHotelMS.biz.front.RoomTypeBiz;
-import com.deluxHotel.DeluxHotelMS.biz.front.UserBiz;
+import com.deluxHotel.DeluxHotelMS.biz.BizException;
+import com.deluxHotel.DeluxHotelMS.biz.RoomTypeBiz;
+import com.deluxHotel.DeluxHotelMS.biz.UserBiz;
 import com.deluxHotel.DeluxHotelMS.vo.Result;
 
 @Controller

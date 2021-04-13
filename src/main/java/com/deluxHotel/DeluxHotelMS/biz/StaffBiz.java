@@ -1,4 +1,4 @@
-package com.deluxHotel.DeluxHotelMS.biz.back;
+package com.deluxHotel.DeluxHotelMS.biz;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,8 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.deluxHotel.DeluxHotelMS.bean.Staff;
 import com.deluxHotel.DeluxHotelMS.bean.StaffExample;
-import com.deluxHotel.DeluxHotelMS.bean.User;
-import com.deluxHotel.DeluxHotelMS.biz.front.BizException;
+import com.deluxHotel.DeluxHotelMS.biz.BizException;
 import com.deluxHotel.DeluxHotelMS.dao.StaffMapper;
 import com.deluxHotel.DeluxHotelMS.utils.MD5Util;
 import com.github.pagehelper.PageHelper;

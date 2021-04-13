@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.deluxHotel.DeluxHotelMS.biz.front.RoomTypeBiz;
+import com.deluxHotel.DeluxHotelMS.biz.RoomTypeBiz;
 import com.deluxHotel.DeluxHotelMS.vo.Result;
 
 @Controller

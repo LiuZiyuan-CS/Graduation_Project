@@ -1,0 +1,253 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+<title>员工一览</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Bootstrap Core CSS -->
+<link href="assets/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="assets/css/style.css" rel='stylesheet' type='text/css' />
+<!-- font CSS -->
+<!-- font-awesome icons -->
+<link href="assets/css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+<!--bootstrap-table  -->
+<link href="assets/css/bootstrap-table.css" rel="stylesheet">
+ <!-- js-->
+<script src="assets/js/jquery-1.11.1.min.js"></script>
+<script src="assets/js/modernizr.custom.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="assets/js/bootstrap.js"> </script>
+<!-- Bootstrap Table插件 -->
+<script src="assets/js/bootstrap-table.js" type="text/javascript" charset="utf-8"></script>
+<script src="assets/js/bootstrap-table-zh-CN.js" type="text/javascript" charset="utf-8"></script>
+<!-- 表单验证js -->
+<script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
+<!-- 表单验证js -->
+<!--webfonts-->
+<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<!--//webfonts--> 
+<!--animate-->
+<link href="assets/css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="assets/js/wow.min.js"></script>
+	<script>
+		 new WOW().init();
+	</script>
+<!--//end-animate-->
+<!-- Metis Menu -->
+<script src="assets/js/metisMenu.min.js"></script>
+<script src="assets/js/custom.js"></script>
+<link href="assets/css/custom.css" rel="stylesheet">
+<!--//Metis Menu -->
+</head> 
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+		<!--左侧导航栏-->
+		<div th:replace="back/left::left"></div>
+		<!--/左侧导航栏-->
+		<!-- 头部导航 -->
+		<div th:replace="back/header::header"></div>
+		<!-- /头部导航 -->
+		<!-- main content start-->
+		<div id="page-wrapper">
+			<div class="main-page">
+				<h3 class="title1">房型信息一览表</h3>
+				<table id="roomTypeInfoTable" class="table table-bordered">
+				</table>
+			</div>
+		</div>
+	</div>
+	<!--footer-->
+		<div th:replace="back/footer::footer" class="footer"></div>
+        <!--//footer-->
+	<!-- Classie -->
+		<script src="assets/js/classie.js"></script>
+		<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				body = document.body;
+				
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeftPush' );
+			};
+			
+			function disableOther( button ) {
+				if( button !== 'showLeftPush' ) {
+					classie.toggle( showLeftPush, 'disabled' );
+				}
+			}
+		</script>
+	<!--scrolling js-->
+	<script src="assets/js/jquery.nicescroll.js"></script>
+	<script src="assets/js/scripts.js"></script>
+	<!--//scrolling js-->
+	<!-- 文件上传js -->
+	<script type="text/javascript" src="assets/js/jquery.iframe-transport.js"></script>
+	<script type="text/javascript" src="assets/js/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="assets/js/jquery.fileupload.js"></script>
+	<!-- /文件上传js -->
+	<!-- roomtypeinfo页面自编的js -->
+   	<script type="text/javascript" >
+   	/* 表格加载 */
+   	$('#roomTypeInfoTable')
+   			.bootstrapTable(
+   					{
+   						method : "POST",
+   						contentType : "application/x-www-form-urlencoded",
+   						dataType : "json",
+   						url : "loadRoomTypeInfo", // 执行加载表格的PostMapping
+   						pagination : true, // 分页
+   						striped : true, // 是否显示行间隔色
+   						search : false, // 显示搜索框
+   						sidePagination : "server", // 服务端处理分页
+   						showRefresh : true,
+   						pageNumber : 1, // 初始化加载第一页，默认第一页
+   						pageSize : 5, // 每页的记录行数（*）
+   						pageList : [ 5, 10, 15, 20 ],
+   						classes : "table table-bordered table-striped table-sm ", // 这里设置表格样式
+   						// toolbar : '#toolbar',
+   						// detailView: false, //扩展子表
+   						showToggle : true, // 是否显示详细视图和列表视图的切换按钮
+   						showColumns : true, // 是否显示所有的列
+   						cardView : false, // 是否显示详细视图
+   						queryParams : function queryParams(params) {
+   							params.search = this.search;
+   							params.pageNumber = this.pageNumber;
+   							return params;
+   						},
+   						sidePagination : "server",
+   						responseHandler : function(result) {
+   							// console.log(result);
+   							return {
+   								"total" : result.total,// 总页数
+   								"rows" : result.list
+   							// 数据
+   							}
+   						},
+   						columns : [
+   								{
+   									field : 'staffId',
+   									sortable : true,
+   									title : '员工编号'
+   								},
+   								{
+   									field : 'staffName',
+   									sortable : true,
+   									title : '员工姓名',
+   								},
+   								{
+   									field : 'staffSex',
+   									sortable : true,
+   									title : '性别',
+   									formatter : function formatStaffSex(value, row,
+   											index) {
+   										var str;
+   										switch (value) {
+   										case "0":
+   											str = "女";
+   											break;
+   										case "1":
+   											str = "男";
+   											break;
+   										}
+   										return str;
+   									}
+   								},
+   								{
+   									field : 'staffIdcard',
+   									sortable : true,
+   									title : '身份证号码',
+   								/*
+   								 * formatter:function formatDate(value,row,index){
+   								 * var d = new Date(value); var
+   								 * times=d.getFullYear() + '年' + (d.getMonth() + 1) +
+   								 * '月' + d.getDate() + '日 ' + d.getHours() + ':' +
+   								 * d.getMinutes() + ':' + d.getSeconds(); return
+   								 * times; }
+   								 */
+   								},
+   								{
+   									field : 'staffTelephone',
+   									title : '联系电话'
+   								},
+   								{
+   									field : 'staffEmail',
+   									sortable : true,
+   									title : '邮箱地址',
+   								/*
+   								 * formatter : function formatStatus( value, row,
+   								 * index) { var str; switch (value) { case "0": str =
+   								 * "已完结"; break; case "1": str = "未完结"; break; }
+   								 * return str; }
+   								 */
+   								},
+
+   								{
+   									field : 'staffAuthority',
+   									sortable : true,
+   									title : '职位',
+   									formatter : function formatAuthority(value,
+   											row, index) {
+   										var str;
+   										switch (value) {
+   										case "0":
+   											str = "超级管理员";
+   											break;
+   										case "1":
+   											str = "员工";
+   											break;
+   										case "2":
+   											str = "经理";
+   											break;
+   										}
+   										return str;
+   									}
+   								},
+   								{
+   									filed : 'staffId',
+   									title : '操作',
+   									formatter : function(value, row, index) {
+   										// 通过formatter可以自定义列显示的内容
+   										// value：当前field的值，即id
+   										// row：当前行的数据
+   										var staff = JSON.stringify(row);
+   										var result = "";
+   										if (row.staffId != '1') {
+   											result += "<a class='btn btn-xs blue'  title='修改' onclick='updateStaff("
+   													+ staff
+   													+ ")'><span class='glyphicon glyphicon-pencil'></span></a>"
+   													+ "<a class='btn btn-xs blue'  title='重置密码' onclick='resetStaffPassword("
+   													+ staff
+   													+ ")'><span class='	glyphicon glyphicon-repeat'></span></a>"
+   													+ "<a class='btn btn-xs red'  title='删除' onclick='checkAccountById("
+   													+ staff
+   													+ ")'><span class='	glyphicon glyphicon-remove'></span></a>";
+   										} else {
+   											result += "系统管理员账号，无权修改";
+   										}
+   										return result;
+   									}
+   								}, ],
+   					// 注册加载子表的事件。注意下这里的三个参数！
+   					// index：父表当前行的行索引。
+   					// row：父表当前行的Json数据对象。
+   					// $detail：当前行下面创建的新行里面的td对象。
+   					/*
+   					 * onExpandRow: function (index, row, $detail) {
+   					 * //console.log(row); if(row.consumptionType==1){
+   					 * InitSubTable(index, row, $detail); } }
+   					 */
+
+   					});
+   	</script>
+   	<!-- /roomtypeinfo页面自编的js -->
+</body>
+</html>

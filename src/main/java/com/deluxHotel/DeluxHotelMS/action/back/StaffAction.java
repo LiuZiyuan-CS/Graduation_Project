@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,9 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.deluxHotel.DeluxHotelMS.bean.Staff;
-import com.deluxHotel.DeluxHotelMS.bean.User;
-import com.deluxHotel.DeluxHotelMS.biz.back.StaffBiz;
-import com.deluxHotel.DeluxHotelMS.biz.front.BizException;
+import com.deluxHotel.DeluxHotelMS.biz.StaffBiz;
+import com.deluxHotel.DeluxHotelMS.biz.BizException;
 import com.deluxHotel.DeluxHotelMS.vo.Result;
 import com.github.pagehelper.PageInfo;
 
