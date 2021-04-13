@@ -110,7 +110,7 @@
    						sidePagination : "server", // 服务端处理分页
    						showRefresh : true,
    						pageNumber : 1, // 初始化加载第一页，默认第一页
-   						pageSize : 5, // 每页的记录行数（*）
+   						pageSize : 10, // 每页的记录行数（*）
    						pageList : [ 5, 10, 15, 20 ],
    						classes : "table table-bordered table-striped table-sm ", // 这里设置表格样式
    						// toolbar : '#toolbar',
@@ -134,37 +134,24 @@
    						},
    						columns : [
    								{
-   									field : 'staffId',
+   									field : 'roomTypeNumber',
    									sortable : true,
-   									title : '员工编号'
+   									title : '房型号'
    								},
    								{
-   									field : 'staffName',
+   									field : 'roomTypeName',
    									sortable : true,
-   									title : '员工姓名',
+   									title : '房型名称',
    								},
    								{
-   									field : 'staffSex',
+   									field : 'roomTypePrice',
    									sortable : true,
-   									title : '性别',
-   									formatter : function formatStaffSex(value, row,
-   											index) {
-   										var str;
-   										switch (value) {
-   										case "0":
-   											str = "女";
-   											break;
-   										case "1":
-   											str = "男";
-   											break;
-   										}
-   										return str;
-   									}
+   									title : '价格',
    								},
    								{
-   									field : 'staffIdcard',
+   									field : 'roomTypeSize',
    									sortable : true,
-   									title : '身份证号码',
+   									title : '房型面积',
    								/*
    								 * formatter:function formatDate(value,row,index){
    								 * var d = new Date(value); var
@@ -175,13 +162,14 @@
    								 */
    								},
    								{
-   									field : 'staffTelephone',
-   									title : '联系电话'
+   									field : 'roomTypeBedType',
+   									title : '床垫类型',
+   									sortable : true,
    								},
    								{
-   									field : 'staffEmail',
+   									field : 'roomTypeBedNumber',
    									sortable : true,
-   									title : '邮箱地址',
+   									title : '床铺数量',
    								/*
    								 * formatter : function formatStatus( value, row,
    								 * index) { var str; switch (value) { case "0": str =
@@ -189,27 +177,71 @@
    								 * return str; }
    								 */
    								},
-
    								{
-   									field : 'staffAuthority',
+   									field : 'roomTypeAdult',
    									sortable : true,
-   									title : '职位',
-   									formatter : function formatAuthority(value,
-   											row, index) {
-   										var str;
-   										switch (value) {
-   										case "0":
-   											str = "超级管理员";
-   											break;
-   										case "1":
-   											str = "员工";
-   											break;
-   										case "2":
-   											str = "经理";
-   											break;
+   									title : '最大入住成人数',
+   								},
+   								{
+   									field : 'roomTypeChild',
+   									sortable : true,
+   									title : '最大入住儿童数',
+   								},
+   								{
+   									field : 'roomTypeRoomService',
+   									sortable : true,
+   									title : '房间服务',
+   									formatter : function formatStatus( value, row,index) { 
+   										var str; 
+   										switch (value) { 
+	   										case "0": 
+	   											str ="有偿提供"; 
+	   											break;
+	   										case "1": 
+	   											str = "提供"; 
+	   											break; 
    										}
-   										return str;
-   									}
+   		   								  return str; 
+   		   							}
+   								},
+   								{
+   									field : 'roomTypeAvailableNumber',
+   									sortable : true,
+   									title : '剩余可用房间数',
+   								},
+   								{
+   									field : 'roomTypeBreakfast',
+   									sortable : true,
+   									title : '早餐',
+   									formatter : function formatStatus( value, row,index) { 
+   										var str; 
+   										switch (value) { 
+	   										case "0": 
+	   											str ="有偿提供"; 
+	   											break;
+	   										case "1": 
+	   											str = "提供"; 
+	   											break; 
+   										}
+   		   								  return str; 
+   		   							}
+   								},
+   								{
+   									field : 'roomTypeLaundry',
+   									sortable : true,
+   									title : '房间内含洗衣间',
+   									formatter : function formatStatus( value, row,index) { 
+   										var str; 
+   										switch (value) { 
+	   										case "0": 
+	   											str ="有偿提供"; 
+	   											break;
+	   										case "1": 
+	   											str = "提供"; 
+	   											break; 
+   										}
+   		   								  return str; 
+   		   							}
    								},
    								{
    									filed : 'staffId',

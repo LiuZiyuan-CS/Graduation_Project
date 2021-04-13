@@ -9,6 +9,7 @@ import com.deluxHotel.DeluxHotelMS.bean.RoomType;
 import com.deluxHotel.DeluxHotelMS.bean.RoomTypeExample;
 import com.deluxHotel.DeluxHotelMS.dao.RoomTypeMapper;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Service
 public class RoomTypeBiz {
@@ -25,6 +26,11 @@ public class RoomTypeBiz {
 		roomTypeExample.createCriteria().andRoomTypeNumberEqualTo(roomTypeNumber);
 		List<RoomType> roomType=roomTypeMapper.selectByExample(roomTypeExample);
 		return roomType.get(0);
+	}
+
+	public PageInfo<RoomType> loadRoomTypeInfo(int page, int pageSize) {
+		PageHelper.startPage(page,pageSize);
+		return new PageInfo<RoomType>(roomTypeMapper.selectByExample(null));
 	}
 
 }
