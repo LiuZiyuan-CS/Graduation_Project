@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,64 +12,12 @@
 	<body>
 		<!-- main wrapper -->
 		<div class="wrapper">
-			<!-- header -->
-			<header class="header">
-				<div class="header-top">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
-								<div class="header-location">
-									<i class="fa fa-map-marker"></i> <a href="#">长沙,湖南,中国</a>
-								</div>
-								<div class="header-email">
-									<i class="fa fa-envelope-o"></i> <a href="mailto:support@email.com">123456789@qq.com</a>
-								</div>
-								<div class="header-phone">
-									<i class="fa fa-phone"></i> <a href="#">0731-123456789</a>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-								<div class="header-social pull-right">
-									<a href="signIn.html" target="_blank" ><i class="fa fa-sign-in" title="会员登录" ></i></a>
-									<a href="#"><i class="fa fa-weixin" title="官方微信"></i></a>
-									<a href="#"><i class="fa fa-weibo" title="官方微博"></i></a>
-									<a href="#"><i class="fa fa-comments" title="在线客服"></i></a>
-									<a href="#"><i class="fa fa-cog" title="设置"></i></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="header-bottom">
-					<nav class="navbar navbar-universal navbar-custom">
-						<div class="container">
-							<div class="row">
-								<div class="col-lg-3">
-									<div class="logo"><a href="index.html" class="navbar-brand page-scroll"><img src="assets/images/logo/logo.png"
-											 alt="logo"></a></div>
-								</div>
-								<div class="col-lg-9">
-									<div class="navbar-header">
-										<button type="button" data-toggle="collapse" data-target=".navbar-main-collapse" class="navbar-toggle"><span
-											 class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
-											 class="icon-bar"></span></button>
-									</div>
-									<div class="collapse navbar-collapse navbar-main-collapse">
-										<ul class="nav navbar-nav navbar-right">
-											<li><a href="index.html">主页</a></li>
-											<li><a href="about-us.html">关于我们</a></li>
-											<li><a href="contacts.html">联系我们</a></li>
-											<li><a href="best-rooms.html">所有房型</a></li>
-											<li><a href="best-rooms-detail.html">房间详细信息</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</nav>
-				</div>
-			</header>
-			<!-- /header -->
+		<!-- header -->
+		<header th:replace="front/header::header"></header>
+		<!-- /header -->
+		<!-- 个人信息模态框 -->
+		<div th:replace="front/plugin::personalInfoModal"></div>
+		<!-- /个人信息模态框 -->
 			<!-- parallax -->
 			<section class="bg-parallax parallax-window">
 				<div class="overlay"></div>
@@ -84,18 +33,18 @@
 						<!-- planner-->
 						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 planner">
 							<div class="planner-block">
-								<form class="form-planner form-horizontal">
+								<form id="checkInForm" class="form-planner form-horizontal">
 									<div class="row">
 										<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 											<div class="form-group">
 												<label>入住日期</label>
-												<input class="form-control" id="datetimepicker1" type="date" placeholder="26-1-2021">
+												<input name="checkInDate" class="form-control" id="datetimepicker1" type="date" placeholder="26-1-2021">
 											</div>
 										</div>
 										<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 											<div class="form-group">
 												<label>退房日期</label>
-												<input class="form-control" id="datetimepicker2" type="date" placeholder="26-1-2021">
+												<input name="checkOutDate" class="form-control" id="datetimepicker2" type="date" placeholder="26-1-2021">
 											</div>
 										</div>
 									</div>
@@ -104,8 +53,13 @@
 											<div class="form-group">
 												<label>房间类型</label>
 												<div class="theme-select">
-													<select class="form-control __plannerSelect">
+													<select name="roomTypeNumber" class="form-control __plannerSelect">
 														<option value="">选择您所需要的房间</option>
+														<option value="">豪华大型双人房</option>
+														<option value="">舒适SPA大床房</option>
+														<option value="">奢华双人大床房</option>
+														<option value="">豪华海景大床房</option>
+														<option value="">优雅Spa房</option>
 													</select>
 												</div>
 											</div>
@@ -116,12 +70,17 @@
 											<div class="form-group">
 												<label>成人</label>
 												<div class="theme-select">
-													<select class="form-control __plannerSelect">
+													<select name="adultNumber" class="form-control __plannerSelect">
 														<option value="">1</option>
 														<option value="">2</option>
 														<option value="">3</option>
 														<option value="">4</option>
 														<option value="">5</option>
+														<option value="">6</option>
+														<option value="">7</option>
+														<option value="">8</option>
+														<option value="">9</option>
+														<option value="">10</option>
 													</select>
 												</div>
 											</div>
@@ -130,12 +89,17 @@
 											<div class="form-group">
 												<label>儿童</label>
 												<div class="theme-select">
-													<select class="form-control __plannerSelect">
+													<select name="childNumber" class="form-control __plannerSelect">
 														<option value="">1</option>
 														<option value="">2</option>
 														<option value="">3</option>
 														<option value="">4</option>
 														<option value="">5</option>
+														<option value="">6</option>
+														<option value="">7</option>
+														<option value="">8</option>
+														<option value="">9</option>
+														<option value="">10</option>
 													</select>
 												</div>
 											</div>
@@ -143,23 +107,14 @@
 										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 											<div class="form-group">
 												<label>联系电话</label>
-												<input type="mobilephone" class="form-control" placeholder="入住旅客联系电话">
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-lg-12 col-md-12 col-sm-12">
-											<div class="form-group">
-												<label>价格范围</label>
-												<div id="slider-range"></div>
-												<div id="amount"><span id="amount1"></span><span id="amount2"></span></div>
+												<input name="userTelephone" type="tel" class="form-control" placeholder="入住旅客联系电话">
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-lg-12 col-md-12 col-sm-12">
 											<div class="planner-check-availability">
-												<a href="wizzard-step1.html" class="btn btn-default">检查可用房间</a>
+												<a href="wizzard-step1.html" class="btn btn-default" onclick="checkAvailableRoom()">检查可用房间</a>
 											</div>
 										</div>
 									</div>
@@ -178,109 +133,24 @@
 						<h2 class="h2">周末入住享有最佳优惠<span class="title-secondary">浏览适合您的房型</span></h2>
 					</div>
 					<div class="best-room-carousel">
-						<ul class="row best-room_ul">
-							<li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
+						<ul  class="row best-room_ul">
+							<li th:each="rt:${session.roomTypeInfo}" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
 								<div class="best-room_img">
-									<a href="#"><img src="assets/images/best-rooms/1.jpg" alt=""></a>
+									<a href="#"><img th:src="${rt.roomTypePic}" alt=""></a>
 									<div class="best-room_overlay">
-										<div class="overlay_icn"><a href="best-rooms-detail.html"></a></div>
+										<div class="overlay_icn"><a th:href="'rooms-detail.html?roomTypeNumber='+${rt.roomTypeNumber}"></a></div>
 									</div>
 								</div>
 								<div class="best-room-info">
-									<div class="best-room_t"><a href="best-rooms-detail.html">豪华大型双人房</a></div>
-									<div class="best-room_desc">豪华客房设计雅致，温馨宜人。
-									客房内还拥有无线上网设施及国际卫星电视频道，您可时刻紧跟时代节奏，随时掌握最新资讯。
+									<div class="best-room_t"><a th:href="'rooms-detail.html?roomTypeNumber='+${rt.roomTypeNumber}" th:text="${rt.roomTypeName}"></a></div>
+									<div class="best-room_desc" th:text="${rt.roomTypeIntrodution}">
 									</div>
 									<div class="best-room_price">
-										<span>￥599</span> / 晚
+										<span th:text="'￥'+${rt.roomTypePrice}"></span> / 晚
 									</div>
 								</div>
 							</li>
-							<li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-								<div class="best-room_img">
-									<a href="#"><img src="assets/images/best-rooms/2.jpg" alt=""></a>
-									<div class="best-room_overlay">
-										<div class="overlay_icn"><a href="best-rooms-detail.html"></a></div>
-									</div>
-								</div>
-								<div class="best-room-info">
-									<div class="best-room_t"><a href="best-rooms-detail.html">舒适SPA大床房</a></div>
-									<div class="best-room_desc">豪华客房设计雅致，温馨宜人。
-									客房内还拥有SPA房，您可随时享受令人舒适Spa体验，享受顶级spa体验。
-									</div>
-									<div class="best-room_price">
-										<span>￥799</span> / 晚
-									</div>
-								</div>
-							</li>
-							<li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-								<div class="best-room_img">
-									<a href="#"><img src="assets/images/best-rooms/3.jpg" alt=""></a>
-									<div class="best-room_overlay">
-										<div class="overlay_icn"><a href="best-rooms-detail.html"></a></div>
-									</div>
-								</div>
-								<div class="best-room-info">
-									<div class="best-room_t"><a href="best-rooms-detail.html">奢华双人大床房</a></div>
-									<div class="best-room_desc">房间面积由38至46平方米，浴室采独立式淋浴和浸浴设计，
-									更备有一系列奢华设备，客房设计大方亮丽，处处流露出法式优雅品味。
-									</div>
-									<div class="best-room_price">
-										<span>￥2099</span> / 晚
-									</div>
-								</div>
-							</li>
-							<li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-								<div class="best-room_img">
-									<a href="#"><img src="assets/images/best-rooms/4.jpg" alt=""></a>
-									<div class="best-room_overlay">
-										<div class="overlay_icn"><a href="best-rooms-detail.html"></a></div>
-									</div>
-								</div>
-								<div class="best-room-info">
-									<div class="best-room_t"><a href="best-rooms-detail.html">豪华海景大床房</a></div>
-									<div class="best-room_desc">房间面积由38至46平方米，浴室采独立式淋浴和浸浴设计，
-									更备有一系列奢华设备，客房设计大方亮丽，处处流露出法式优雅品味。
-									</div>
-									<div class="best-room_price">
-										<span>￥2599</span> / 晚
-									</div>
-								</div>
-							</li>
-							<li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-								<div class="best-room_img">
-									<a href="#"><img src="assets/images/best-rooms/5.jpg" alt=""></a>
-									<div class="best-room_overlay">
-										<div class="overlay_icn"><a href="best-rooms-detail.html"></a></div>
-									</div>
-								</div>
-								<div class="best-room-info">
-									<div class="best-room_t"><a href="best-rooms-detail.html">优雅Spa房</a></div>
-									<div class="best-room_desc">豪华客房设计雅致，温馨宜人。
-									客房内还拥有SPA房，您可随时享受令人舒适Spa体验，随时掌握最新资讯。
-									</div>
-									<div class="best-room_price">
-										<span>$1599</span> / 晚
-									</div>
-								</div>
-							</li>
-							<li class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
-								<div class="best-room_img">
-									<a href="#"><img src="assets/images/best-rooms/6.jpg" alt=""></a>
-									<div class="best-room_overlay">
-										<div class="overlay_icn"><a href="best-rooms-detail.html"></a></div>
-									</div>
-								</div>
-								<div class="best-room-info">
-									<div class="best-room_t"><a href="best-rooms-detail.html">行政套房</a></div>
-									<div class="best-room_desc" >俯瞰城市的繁华景色,设计糅合现代生活品味与传统中国特色，
-									营造出大方亮丽又不失时尚气息的优雅空间，让宾客尽情放松休憩。
-									</div>
-									<div class="best-room_price">
-										<span>$6888</span> / 晚
-									</div>
-								</div>
-							</li>
+							
 						</ul>
 					</div>
 				</div>
@@ -383,96 +253,11 @@
 			<!-- /map -->
 			<!-- /main wrapper -->
 			<!-- footer -->
-			<footer class="footer">
-				<div class="footer-top">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-								<div class="footer-top_logo"><a href="index.html"><img src="assets/images/logo/logo.png" alt="Footer logo"></a></div>
-								<div class="footer-top_txt">
-									<p>迪卢克斯酒店是天堂酒店及度假村旗下的奢华酒店，为社会名流及精英人士，提供精益求精的个性化贴心服务，并打造极致非凡体验的奢华酒店品牌。</p>
-								</div>
-								<div class="footer-top_address">
-									<div><i class="fa fa-phone"></i> Phone: <span>0731-123456789</span></div>
-									<div><i class="fa fa-envelope-o"></i> E-mail: <span><a href="mailto:support@email.com">123456789@qq.com</a></span></div>
-									<div><i class="fa fa-home"></i> 地址: <span>长沙,湖南,中国</span></div>
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-								<div class="footer-top_rooms">
-									<ul>
-										<li>
-											<div class="rooms_img">
-												<a href="blog-detail.html"><img src="assets/images/footer/1.jpg" alt=""></a>
-											</div>
-											<div class="rooms_info">
-												<div class="rooms_t"><a href="blog-detail.html">超大豪华套房</a></div>
-												<div class="rooms_props">3 床 / Wi-Fi / 2 浴室<span>￥699</span></div>
-											</div>
-										</li>
-										<li>
-											<div class="rooms_img">
-												<a href="blog-detail.html"><img src="assets/images/footer/2.jpg" alt=""></a>
-											</div>
-											<div class="rooms_info">
-												<div class="rooms_t"><a href="blog-detail.html">总统套房</a></div>
-												<div class="rooms_props">4床 / 单独会客厅 / 小型水吧<span>￥7999</span></div>
-											</div>
-										</li>
-										<li>
-											<div class="rooms_img">
-												<a href="blog-detail.html"><img src="assets/images/footer/3.jpg" alt=""></a>
-											</div>
-											<div class="rooms_info">
-												<div class="rooms_t"><a href="blog-detail.html">Spa双人房</a></div>
-												<div class="rooms_props">2 床 / Wi-Fi / Spa房<span>$999</span></div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-4 col-sm-12 marg-sm-50 col-xs-12">
-								<div class="footer-top_contact_form">
-									<div class="contact_form_t">订阅我们的推送服务</div>
-									<form action="mail.php" method="POST" class="row form-horizontal form-wizzard">
-										<!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-											<input type="text" name="name" class="form-control" placeholder="姓名...">
-										</div> -->
-										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-											<input type="email" name="email" class="form-control" placeholder="Email...">
-											
-										</div>
-										
-										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
-											<input type="submit" value="订 阅" class="btn btn-default">
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="footer-bottom">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-								<div class="footer-bottom_copy">Copyright &copy; <a target="_blank" href="https://github.com/LiuZiyuan-CS">LiuZiyuan.</a></div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-								<div class="footer-bottom_links">
-									<a class="active" href="index.html">主页</a>
-									<a href="gallery.html">浏览</a>
-									<a href="blog.html">博客</a>
-									<a href="wizzard-step1.html">预定</a>
-									<a href="#">入住</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</footer>
+			<div th:replace="front/footer::footer"></div>
+			<!-- /footer -->
 		</div>
-		<!-- /footer -->
+		
+		
 		<!-- Scripts -->
 		<script type="text/javascript" src="assets/js/jquery.min.js"></script>
 		<script type="text/javascript" src="assets/js/tether.min.js"></script>
@@ -487,5 +272,16 @@
 		<script type="text/javascript" src="assets/js/map.js"></script>
 		<script type="text/javascript" src="assets/js/main.js"></script>
 		<!-- /Scripts -->
+		<!-- 文件上传js -->
+		<script type="text/javascript" src="assets/js/jquery.fileupload.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.iframe-transport.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.ui.widget.js"></script>
+		<!-- /文件上传js -->
+		<!-- validate.js插件 -->
+		<script src="assets/js/jquery.validate.min.js"></script>
+		<!-- /validate.js插件 -->
+		<!-- 前台js文件 -->
+		<script type="text/javascript" src="assets/js/front.js"></script>
+		<!-- 、前台js文件 -->
 	</body>
 </html>

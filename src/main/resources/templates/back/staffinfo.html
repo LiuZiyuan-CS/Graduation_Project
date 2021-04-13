@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+<title>员工一览</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Bootstrap Core CSS -->
+<link href="assets/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="assets/css/style.css" rel='stylesheet' type='text/css' />
+<!-- font CSS -->
+<!-- font-awesome icons -->
+<link href="assets/css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+<!--bootstrap-table  -->
+<link href="assets/css/bootstrap-table.css" rel="stylesheet">
+ <!-- js-->
+<script src="assets/js/jquery-1.11.1.min.js"></script>
+<script src="assets/js/modernizr.custom.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="assets/js/bootstrap.js"> </script>
+<!-- Bootstrap Table插件 -->
+<script src="assets/js/bootstrap-table.js" type="text/javascript" charset="utf-8"></script>
+<script src="assets/js/bootstrap-table-zh-CN.js" type="text/javascript" charset="utf-8"></script>
+<!-- 表单验证js -->
+<script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
+<!-- 表单验证js -->
+<!--webfonts-->
+<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<!--//webfonts--> 
+<!--animate-->
+<link href="assets/css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="assets/js/wow.min.js"></script>
+	<script>
+		 new WOW().init();
+	</script>
+<!--//end-animate-->
+<!-- Metis Menu -->
+<script src="assets/js/metisMenu.min.js"></script>
+<script src="assets/js/custom.js"></script>
+<link href="assets/css/custom.css" rel="stylesheet">
+<!--//Metis Menu -->
+</head> 
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+		<!--左侧导航栏-->
+		<div th:replace="back/left::left"></div>
+		<!--/左侧导航栏-->
+		<!-- 头部导航 -->
+		<div th:replace="back/header::header"></div>
+		<!-- /头部导航 -->
+		<!-- main content start-->
+		<div id="page-wrapper">
+			<div class="main-page">
+				<h3 class="title1">员工信息一览表</h3>
+				<table id="staffInfoTable"  class="table table-bordered">
+				</table>
+		</div>
+		<!-- 员工信息模态框 -->
+		<div th:fragment="staffInfoModal" class="modal fade" id="staffInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		               <h4 class="title3">员工信息</h4>
+		            </div>
+		            <div class="modal-body">
+		            
+						<div class="profile-top">
+							<div class="imgbox" >
+								<img id="profileImg" alt="" src="assets/images/1.png">
+								<a onclick="uploadProfile()">
+									<div class="mask"> 
+										<span>更换头像</span>
+									</div>
+								</a>
+								<input id="profile-icon" style="display: none" name="profile-icon"  type="file"  accept="image/*" >
+							</div>
+							<h4>刘子源</h4>
+						</div>
+						<form id="staffInfoForm">
+							<div class="profile-text">
+								<div class="profile-row row-middle">
+									<div class="profile-left">
+										<i class="fa fa-mobile profile-icon"></i>
+									</div>
+									<div class="profile-right">
+										<input style="border:0px;"name="staffTelephone" id="staffTelephone" type="text" readonly="readonly" value="13467310469" ><a class='btn btn-xs blue'  title='修改' onclick="modify('tel')"><span class='glyphicon glyphicon-pencil'></span></a>
+										<p>联系电话</p>
+									</div> 
+									<div class="clearfix"> </div>	
+								</div>
+								<div class="profile-row row-middle">
+									<div class="profile-left">
+										<i class="fa fa-envelope profile-icon"></i>
+									</div>
+									<div class="profile-right">
+									<input style="border:0px;" name="staffEmail" id="staffEmail" type="text" readonly="readonly" value="liuziyuan@qq.com" ><a class='btn btn-xs blue'  title='修改' onclick="modify('email')"><span class='glyphicon glyphicon-pencil'></span></a>
+									<p>邮箱地址</p>
+									</div> 
+									<div class="clearfix"> </div>	
+								</div>
+								<div class="profile-row row-middle">
+									<div class="profile-left">
+										<i class="fa fa-id-card profile-icon"></i>
+									</div>
+									<div class="profile-right">
+									<select name="staffAuthority" id="staffAuthority">
+										<option  value="1">员工</option>
+										<option value="2">经理</option>
+									</select>
+										<p>员工职位</p>
+									</div> 
+									<div class="clearfix"> </div>	
+								</div>
+								<input id="staffId" name="staffId" hidden="hidden" >
+							</div>
+						</form>
+		            </div>
+		            <div class="modal-footer">
+		             <button id="modifyBtn" type="button" class="btn btn-default" onclick="updateStaffInfo()">修改</button>
+		                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		            </div>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
+		<!-- /个人信息模态框 -->
+	</div>
+	</div>
+	<!--footer-->
+		<div th:replace="back/footer::footer" class="footer"></div>
+        <!--//footer-->
+	<!-- Classie -->
+		<script src="assets/js/classie.js"></script>
+		<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				body = document.body;
+				
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeftPush' );
+			};
+			
+			function disableOther( button ) {
+				if( button !== 'showLeftPush' ) {
+					classie.toggle( showLeftPush, 'disabled' );
+				}
+			}
+		</script>
+	<!--scrolling js-->
+	<script src="assets/js/jquery.nicescroll.js"></script>
+	<script src="assets/js/scripts.js"></script>
+	<!--//scrolling js-->
+	<!-- 文件上传js -->
+	<script type="text/javascript" src="assets/js/jquery.iframe-transport.js"></script>
+	<script type="text/javascript" src="assets/js/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="assets/js/jquery.fileupload.js"></script>
+	<!-- /文件上传js -->
+	<!-- staffinfo页面自编的js -->
+   	<script type="text/javascript" src="assets/js/staffinfo.js"></script>
+   	<!-- /staffinfo页面自编的js -->
+</body>
+</html>

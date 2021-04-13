@@ -16,12 +16,28 @@ spring:
       classpath:/META-INF/resources/,
       classpath:/resources/,
       classpath:/public/,
+      file:G:/Graduation_Project/Profile/,
  
   datasource: 
     url: jdbc:mysql://127.0.0.1/deluxhotelms?useUnicode=true&characterEncoding=UTF-8
     username: root
     password: a
     driver-class-name: com.mysql.jdbc.Driver
+    
+  mail: 
+    host: smtp.qq.com
+    username: 799751640@qq.com
+    password: bipjwsxfzeiubefg
+    default-encoding: UTF-8
+    
+mail: 
+  sender: 
+    addr: 799751640@qq.com
+
+userProfileAddr: G:\Graduation_Project\Profile\
+staffProfileAddr: G:\Graduation_Project\Profile\
+userDefaultProfileFileName: ../default_user.jpg,
+staffDefaultProfileFileName: ../default_staff.jpg,
 logging:
   level:
     com: debug

@@ -15,6 +15,8 @@ public class User {
 
     private String userPassword;
 
+    private String userProfile;
+
     public Integer getUserId() {
         return userId;
     }
@@ -69,5 +71,13 @@ public class User {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword == null ? null : userPassword.trim();
+    }
+
+    public String getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(String userProfile) {
+        this.userProfile = userProfile == null ? null : userProfile.trim();
     }
 }

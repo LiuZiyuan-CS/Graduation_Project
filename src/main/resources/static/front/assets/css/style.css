@@ -231,7 +231,8 @@ hr {
   color: #444;
 }
 .form-control.__plannerInput {
-  background: #ffffff url(../images/icons/calendar-default.png) no-repeat 95% center;
+  background: #ffffff  95% center;
+  height:36px;
 }
 .theme-select {
   width: 100%;
@@ -3095,3 +3096,141 @@ background: #fafafa;
 .reservation-1 .module .theme-select {
 background-color: #fff !important;
 }
+
+
+
+<!-- 个人信息css -->
+.profile{
+    padding: 0;
+	width: 32%;
+}
+.profile-top {
+    background-color: #9CCC65;
+    text-align: center;
+	padding: 1.5em;
+}
+.profile-top img {
+    vertical-align: middle;
+    border: 4px solid #F2B33F;
+    border-radius: 50%;
+}
+.profile-top h4 {
+    font-size: 1.1em;
+    color: #fff;
+    margin: .5em 0;
+}
+.profile-top h5 {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.59);
+}
+h4.title3 {
+	text-align:center;
+    padding: 1em;
+    background-color: #9CCC65;
+    color: #ffffff;
+}
+.profile-text {
+    padding: 1.5em 3em;
+}
+.profile-row.row-middle {
+    margin: 1em 0;
+}
+.profile-left {
+    float: left;
+    width: 15%;
+}
+.profile-right {
+    float: left;
+    width: 85%;
+}
+.row-middle .profile-right {
+    border-top: 1px solid #6164C1;
+    padding: 1em 0;
+}
+.profile-row .profile-icon {
+    font-size: 1.4em;
+	margin-top: 0.6em;
+	color: #6F6F6F;
+}
+i.fa.fa-mobile.profile-icon {
+    font-size: 2em;
+}
+i.fa.fa-envelop.profile-icon {
+    font-size: 2em;
+}
+i.fa fa-id-card.profile-icon {
+    font-size: 2em;
+}
+.profile-right h4 {
+    font-size: 1em;
+    color: #504E4E;
+    font-weight: 500;
+}
+.profile-right p {
+    font-size: .9em;
+    color: #999;
+    margin-top: .4em;
+}
+.mask{
+	border-radius: 50%;
+}
+.imgbox{
+	border-radius: 50%;
+	padding: 0;
+	background: #9CCC65;
+}
+.imgbox a{
+	cursor: pointer;
+	border-radius: 50%;
+}
+.imgbox {
+	position: relative;
+	width: 100px;
+	height: 100px;
+	margin: auto;
+}
+
+.imgbox img {
+	width: 100px;
+	height: 100px;
+	/* 转换速度 */
+	transition: transform 0.5s ease;
+}
+
+.imgbox .mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100px;
+	height: 100px;
+	background: rgba(44, 44, 44, 0.6);
+	color: #ffffff;
+	opacity: 0;
+	display: flex;
+	font-size: 13px;
+	/* 转换速度 */
+	transition: transform 0.5s ease;
+}
+
+.mask span {
+	margin: auto;
+}
+
+.imgbox a:hover .mask {
+	opacity: 1;
+	/* 增加元素的大小*/
+	-webkit-transform: scale(1.1, 1.1);
+	/* Safari */
+	-ms-transform: scale(1.1, 1.1);
+	/* IE 9 */
+	transform: scale(1.1, 1.1);
+}
+
+.imgbox:hover img {
+	-webkit-transform: scale(1.1, 1.1);
+	/* Safari */
+	-ms-transform: scale(1.1, 1.1);
+	/* IE 9 */
+	transform: scale(1.1, 1.1);
+}
+<!-- /个人信息css -->

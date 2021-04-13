@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Best Room Detail</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="stylesheet" href="assets/css/responsive.css">
+	</head>
+	<body>
+		<!-- main wrapper -->
+		<div class="wrapper">
+			<!-- header -->
+		<header th:replace="front/header::header"></header>
+		<!-- /header -->
+		<!-- 个人信息模态框 -->
+		<div th:replace="front/plugin::personalInfoModal"></div>
+		<!-- /个人信息模态框 -->
+			<!-- breadcrumbs -->
+			<section class="breadcrumbs" style="background-image: url(assets/images/breadcrumbs/best-room.jpg)">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
+							<h1 class="h1">房 间 详 情</h1>
+						</div>
+						<div class="col-md-6">
+							<ol class="breadcrumb">
+								<li><a href="#">主页</a><i class="fa fa-angle-right"></i></li>
+								<li><a href="#">房间</a><i class="fa fa-angle-right"></i></li>
+								<li class="active">房间详情</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- /breadcrumbs -->
+			<!-- room details-->
+			<section class="room-detail">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							<div class="row reservation-top">
+								<div class="module __reservation">
+									<div class="module-block">
+										<form id="roomDetailCheckInForm" class="form-planner form-horizontal">
+											<input name="roomTypeNumber" type="text" hidden="hidden" th:value="${roomType.roomTypeNumber}">
+											<div class="col-md-3 col-xs-12">
+												<div class="form-group">
+													<label>入住日期</label>
+													<input name="checkInDate" class="form-control __plannerInput" id="datetimepicker1" type="date" placeholder="10-05-2015">
+												</div>
+											</div>
+											<div class="col-md-3 col-xs-12">
+												<div class="form-group">
+													<label>退房日期</label>
+													<input name="checkOutDate" class="form-control __plannerInput" id="datetimepicker2" type="date" placeholder="17-05-2015">
+												</div>
+											</div>
+											<div class="col-md-2 col-xs-6">
+												<div class="form-group">
+													<label>成人</label>
+													<div class="theme-select">
+														<select name="adultNum" class="form-control __plannerSelect">
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5">5</option>
+															<option value="6">6</option>
+															<option value="7">7</option>
+															<option value="8">8</option>
+															<option value="9">9</option>
+															<option value="10">10</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-2 col-xs-6">
+												<div class="form-group">
+													<label>小孩</label>
+													<div class="theme-select">
+														<select name="childNum" class="form-control __plannerSelect">
+															<option value="0">0</option>
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5">5</option>
+															<option value="6">6</option>
+															<option value="7">7</option>
+															<option value="8">8</option>
+															<option value="9">9</option>
+															<option value="10">10</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-2 col-xs-12">
+												<div class="form-group">
+													<a  onclick="checkAvailableRoomInRoomDetailPage()" class="btn btn-default wizzard-search-btn">查询可用房间</a>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12 marg50">
+							<h2 class="h2" th:text="${roomType.roomTypeName}">Superior Room - Two Bed</h2>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="owl-carousel owl_gallery">
+								<div class="item"><img class="img-responsive" th:src="${roomType.roomTypePic}"></div>
+							</div> 
+						</div>
+						<div class="col-lg-6 col-md-6">
+							<div class="room-detail_overview">
+								<table class="simple">
+									<tr>
+										<td><strong>价格:</strong></td>
+										<td><span th:text="'￥'+${roomType.roomTypePrice}">$ 500</span> / 晚</td>
+									</tr>
+									<tr>
+										<td><strong>房间面积:</strong></td>
+										<td th:text="${roomType.roomTypeSize}+'平方米'">150 sqm</td>
+									</tr>
+									<tr>
+										<td><strong>床数:</strong></td>
+										<td th:text="${roomType.roomTypeBedNumber}">2 King Beds</td>
+									</tr>
+									<tr>
+										<td><strong>最大入住人数:</strong></td>
+										<td th:text="${roomType.roomTypeAdult}+'成人/'+${roomType.roomTypeChild}+'儿童'">5 people</td>
+									</tr>
+									<tr>
+										<td><strong>Wi-Fi:</strong></td>
+										<td th:text="${roomType.roomTypeWifi=='1'?'免费使用':'无'}">Avaible</td>
+									</tr>
+									<tr>
+										<td><strong>客房专属服务:</strong></td>
+										<td th:text="${roomType.roomTypeRoomService=='1'?'有':'无'}">Avaible</td>
+									</tr>
+									<tr>
+										<td><strong>早餐:</strong></td>
+										<td th:text="${roomType.roomTypeBreakfast=='1'?'提供':'需付费'}">Included</td>
+									</tr>
+									<tr>
+										<td><strong>房间内洗衣房:</strong></td>
+										<td th:text="${roomType.roomTypeLaundry=='1'?'免费使用':'无'}">Avaible</td>
+									</tr>
+									<tr>
+										<td><strong>接送服务:</strong></td>
+										<td th:text="${roomType.roomTypeTransferService=='1'?'有':'无'}">Yes</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- /room details -->
+			<!-- chose best rooms -->
+			<section class="best-room">
+				<div class="container">
+					<h2 class="h2">Recent rooms</h2>
+					<div class="best-room-carousel">
+						<ul class="row best-room_ul">
+							<li th:each="rt:${session.roomTypeInfo}" class="col-lg-4 col-md-4 col-sm-6 col-xs-12 best-room_li">
+								<div class="best-room_img">
+									<a href="#"><img th:src="${rt.roomTypePic}" alt=""></a>
+									<div class="best-room_overlay">
+										<div class="overlay_icn"><a th:href="'rooms-detail.html?roomTypeNumber='+${rt.roomTypeNumber}"></a></div>
+									</div>
+								</div>
+								<div class="best-room-info">
+									<div class="best-room_t"><a th:href="'rooms-detail.html?roomTypeNumber='+${rt.roomTypeNumber}" th:text="${rt.roomTypeName}"></a></div>
+									<div class="best-room_desc" th:text="${rt.roomTypeIntrodution}">
+									</div>
+									<div class="best-room_price">
+										<span th:text="'￥'+${rt.roomTypePrice}"></span> / 晚
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<!-- /choose best rooms -->
+			<!-- footer -->
+			<div th:replace="front/footer::footer"></div>
+			<!-- /footer -->
+		</div>
+		<!-- /footer -->
+		<!-- Scripts -->
+		<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+		<script type="text/javascript" src="assets/js/tether.min.js"></script>
+		<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="assets/js/moment.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.smartmenus.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.parallax.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.shuffle.min.js"></script>
+		<script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
+		<script type="text/javascript" src="assets/js/main.js"></script>
+		<!-- /Scripts -->
+		
+		<!-- 文件上传js -->
+		<script type="text/javascript" src="assets/js/jquery.fileupload.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.iframe-transport.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.ui.widget.js"></script>
+		<!-- /文件上传js -->
+		<!-- 前台js文件 -->
+		<script type="text/javascript" src="assets/js/front.js"></script>
+		<!-- 、前台js文件 -->
+		<!-- validate.js插件 -->
+		<script src="assets/js/jquery.validate.min.js"></script>
+		<!-- /validate.js插件 -->
+	</body>
+</html>

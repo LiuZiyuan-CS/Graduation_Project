@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- 个人信息模态框 -->
+		<div th:fragment="personalInfoModal" class="modal fade" id="personalInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		               <h4 class="title3">个人信息</h4>
+		            </div>
+		            <div class="modal-body">
+						<div class="profile-top">
+						<div class="imgbox" >
+							<img id="profileImg" alt="" th:src="${session.loginUser==null?'':session.loginUser.userProfile}">
+							<a onclick="uploadProfile()">
+								<div class="mask"> 
+									<span>更换头像</span>
+								</div>
+							</a>
+							<input id="profile-icon" name="profile-icon" hidden="hidden" type="file"  accept="image/*" >
+						</div>
+							<h4>刘子源</h4>
+						</div>
+						<div class="profile-text">
+							<div class="profile-row row-middle">
+								<div class="profile-left">
+									<i class="fa fa-mobile profile-icon"></i>
+								</div>
+								<div class="profile-right">
+									<h4 th:text="${session.loginUser==null?'':session.loginUser.userTelephone.substring(0,3)+'****'+session.loginUser.userTelephone.substring(7)}">134****0469</h4>
+									<p>联系电话</p>
+								</div> 
+								<div class="clearfix"> </div>	
+							</div>
+							<div class="profile-row row-middle">
+								<div class="profile-left">
+									<i class="fa fa-envelope profile-icon"></i>
+								</div>
+								<div class="profile-right">
+									<h4 th:text="${session.loginUser==null?'':session.loginUser.userEmail}">liuziyuan-lzy@qq.com</h4>
+									<p>邮箱地址</p>
+								</div> 
+								<div class="clearfix"> </div>	
+							</div>
+							<div class="profile-row row-middle">
+								<div class="profile-left">
+									<i class="fa fa-id-card profile-icon"></i>
+								</div>
+								<div class="profile-right">
+									<h4 th:text="${session.loginUser==null?'':session.loginUser.userIdcard.substring(0,3)+'***************'}">430**********</h4>
+									<p>身份证号</p>
+								</div> 
+								<div class="clearfix"> </div>	
+							</div>
+						</div>
+		            </div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		            </div>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
+<!-- /个人信息模态框 -->

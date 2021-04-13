@@ -583,6 +583,76 @@ public class UserExample {
             addCriterion("user_password not between", value1, value2, "userPassword");
             return (Criteria) this;
         }
+
+        public Criteria andUserProfileIsNull() {
+            addCriterion("user_profile is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserProfileIsNotNull() {
+            addCriterion("user_profile is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserProfileEqualTo(String value) {
+            addCriterion("user_profile =", value, "userProfile");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserProfileNotEqualTo(String value) {
+            addCriterion("user_profile <>", value, "userProfile");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserProfileGreaterThan(String value) {
+            addCriterion("user_profile >", value, "userProfile");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserProfileGreaterThanOrEqualTo(String value) {
+            addCriterion("user_profile >=", value, "userProfile");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserProfileLessThan(String value) {
+            addCriterion("user_profile <", value, "userProfile");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserProfileLessThanOrEqualTo(String value) {
+            addCriterion("user_profile <=", value, "userProfile");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserProfileLike(String value) {
+            addCriterion("user_profile like", value, "userProfile");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserProfileNotLike(String value) {
+            addCriterion("user_profile not like", value, "userProfile");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserProfileIn(List<String> values) {
+            addCriterion("user_profile in", values, "userProfile");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserProfileNotIn(List<String> values) {
+            addCriterion("user_profile not in", values, "userProfile");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserProfileBetween(String value1, String value2) {
+            addCriterion("user_profile between", value1, value2, "userProfile");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserProfileNotBetween(String value1, String value2) {
+            addCriterion("user_profile not between", value1, value2, "userProfile");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

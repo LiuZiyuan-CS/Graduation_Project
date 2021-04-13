@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deluxHotel.DeluxHotelMS.dao.ReserveMapper">
+  <resultMap id="BaseResultMap" type="com.deluxHotel.DeluxHotelMS.bean.Reserve">
+    <id column="reserve_id" jdbcType="INTEGER" property="reserveId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="reserve_payment" jdbcType="VARCHAR" property="reservePayment" />
+    <result column="reserve_payment_status" jdbcType="VARCHAR" property="reservePaymentStatus" />
+    <result column="reserve_adult" jdbcType="VARCHAR" property="reserveAdult" />
+    <result column="reserve_child" jdbcType="VARCHAR" property="reserveChild" />
+    <result column="room_type_id" jdbcType="INTEGER" property="roomTypeId" />
+    <result column="reserve_room_number" jdbcType="VARCHAR" property="reserveRoomNumber" />
+    <result column="reserve_check_in_time" jdbcType="TIMESTAMP" property="reserveCheckInTime" />
+    <result column="reserve_check_out_time" jdbcType="TIMESTAMP" property="reserveCheckOutTime" />
+    <result column="reserve_status" jdbcType="VARCHAR" property="reserveStatus" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    reserve_id, user_id, reserve_payment, reserve_payment_status, reserve_adult, reserve_child, 
+    room_type_id, reserve_room_number, reserve_check_in_time, reserve_check_out_time, 
+    reserve_status
+  </sql>
+  <select id="selectByExample" parameterType="com.deluxHotel.DeluxHotelMS.bean.ReserveExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from reserve
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from reserve
+    where reserve_id = #{reserveId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from reserve
+    where reserve_id = #{reserveId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.deluxHotel.DeluxHotelMS.bean.ReserveExample">
+    delete from reserve
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.deluxHotel.DeluxHotelMS.bean.Reserve">
+    insert into reserve (reserve_id, user_id, reserve_payment, 
+      reserve_payment_status, reserve_adult, reserve_child, 
+      room_type_id, reserve_room_number, reserve_check_in_time, 
+      reserve_check_out_time, reserve_status)
+    values (#{reserveId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{reservePayment,jdbcType=VARCHAR}, 
+      #{reservePaymentStatus,jdbcType=VARCHAR}, #{reserveAdult,jdbcType=VARCHAR}, #{reserveChild,jdbcType=VARCHAR}, 
+      #{roomTypeId,jdbcType=INTEGER}, #{reserveRoomNumber,jdbcType=VARCHAR}, #{reserveCheckInTime,jdbcType=TIMESTAMP}, 
+      #{reserveCheckOutTime,jdbcType=TIMESTAMP}, #{reserveStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.deluxHotel.DeluxHotelMS.bean.Reserve">
+    insert into reserve
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reserveId != null">
+        reserve_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="reservePayment != null">
+        reserve_payment,
+      </if>
+      <if test="reservePaymentStatus != null">
+        reserve_payment_status,
+      </if>
+      <if test="reserveAdult != null">
+        reserve_adult,
+      </if>
+      <if test="reserveChild != null">
+        reserve_child,
+      </if>
+      <if test="roomTypeId != null">
+        room_type_id,
+      </if>
+      <if test="reserveRoomNumber != null">
+        reserve_room_number,
+      </if>
+      <if test="reserveCheckInTime != null">
+        reserve_check_in_time,
+      </if>
+      <if test="reserveCheckOutTime != null">
+        reserve_check_out_time,
+      </if>
+      <if test="reserveStatus != null">
+        reserve_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reserveId != null">
+        #{reserveId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="reservePayment != null">
+        #{reservePayment,jdbcType=VARCHAR},
+      </if>
+      <if test="reservePaymentStatus != null">
+        #{reservePaymentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveAdult != null">
+        #{reserveAdult,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveChild != null">
+        #{reserveChild,jdbcType=VARCHAR},
+      </if>
+      <if test="roomTypeId != null">
+        #{roomTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="reserveRoomNumber != null">
+        #{reserveRoomNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveCheckInTime != null">
+        #{reserveCheckInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reserveCheckOutTime != null">
+        #{reserveCheckOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reserveStatus != null">
+        #{reserveStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.deluxHotel.DeluxHotelMS.bean.ReserveExample" resultType="java.lang.Long">
+    select count(*) from reserve
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update reserve
+    <set>
+      <if test="record.reserveId != null">
+        reserve_id = #{record.reserveId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.reservePayment != null">
+        reserve_payment = #{record.reservePayment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reservePaymentStatus != null">
+        reserve_payment_status = #{record.reservePaymentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reserveAdult != null">
+        reserve_adult = #{record.reserveAdult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reserveChild != null">
+        reserve_child = #{record.reserveChild,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roomTypeId != null">
+        room_type_id = #{record.roomTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.reserveRoomNumber != null">
+        reserve_room_number = #{record.reserveRoomNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reserveCheckInTime != null">
+        reserve_check_in_time = #{record.reserveCheckInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reserveCheckOutTime != null">
+        reserve_check_out_time = #{record.reserveCheckOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reserveStatus != null">
+        reserve_status = #{record.reserveStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update reserve
+    set reserve_id = #{record.reserveId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      reserve_payment = #{record.reservePayment,jdbcType=VARCHAR},
+      reserve_payment_status = #{record.reservePaymentStatus,jdbcType=VARCHAR},
+      reserve_adult = #{record.reserveAdult,jdbcType=VARCHAR},
+      reserve_child = #{record.reserveChild,jdbcType=VARCHAR},
+      room_type_id = #{record.roomTypeId,jdbcType=INTEGER},
+      reserve_room_number = #{record.reserveRoomNumber,jdbcType=VARCHAR},
+      reserve_check_in_time = #{record.reserveCheckInTime,jdbcType=TIMESTAMP},
+      reserve_check_out_time = #{record.reserveCheckOutTime,jdbcType=TIMESTAMP},
+      reserve_status = #{record.reserveStatus,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.deluxHotel.DeluxHotelMS.bean.Reserve">
+    update reserve
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="reservePayment != null">
+        reserve_payment = #{reservePayment,jdbcType=VARCHAR},
+      </if>
+      <if test="reservePaymentStatus != null">
+        reserve_payment_status = #{reservePaymentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveAdult != null">
+        reserve_adult = #{reserveAdult,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveChild != null">
+        reserve_child = #{reserveChild,jdbcType=VARCHAR},
+      </if>
+      <if test="roomTypeId != null">
+        room_type_id = #{roomTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="reserveRoomNumber != null">
+        reserve_room_number = #{reserveRoomNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveCheckInTime != null">
+        reserve_check_in_time = #{reserveCheckInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reserveCheckOutTime != null">
+        reserve_check_out_time = #{reserveCheckOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reserveStatus != null">
+        reserve_status = #{reserveStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where reserve_id = #{reserveId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.deluxHotel.DeluxHotelMS.bean.Reserve">
+    update reserve
+    set user_id = #{userId,jdbcType=INTEGER},
+      reserve_payment = #{reservePayment,jdbcType=VARCHAR},
+      reserve_payment_status = #{reservePaymentStatus,jdbcType=VARCHAR},
+      reserve_adult = #{reserveAdult,jdbcType=VARCHAR},
+      reserve_child = #{reserveChild,jdbcType=VARCHAR},
+      room_type_id = #{roomTypeId,jdbcType=INTEGER},
+      reserve_room_number = #{reserveRoomNumber,jdbcType=VARCHAR},
+      reserve_check_in_time = #{reserveCheckInTime,jdbcType=TIMESTAMP},
+      reserve_check_out_time = #{reserveCheckOutTime,jdbcType=TIMESTAMP},
+      reserve_status = #{reserveStatus,jdbcType=VARCHAR}
+    where reserve_id = #{reserveId,jdbcType=INTEGER}
+  </update>
+</mapper>

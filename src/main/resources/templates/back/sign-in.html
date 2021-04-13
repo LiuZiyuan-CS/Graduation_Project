@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="" />
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<!-- Bootstrap Core CSS -->
+		<link href="assets/css/bootstrap.css" rel='stylesheet' type='text/css' />
+		<!-- Custom CSS -->
+		<link href="assets/css/style.css" rel='stylesheet' type='text/css' />
+		<!-- font CSS -->
+		<!-- font-awesome icons -->
+		<link href="assets/css/font-awesome.css" rel="stylesheet"> 
+		<!-- //font-awesome icons -->
+		 <!-- js-->
+		<script src="assets/js/jquery-1.11.1.min.js"></script>
+		<script src="assets/js/modernizr.custom.js"></script>
+		<!--webfonts-->
+		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+		<!--//webfonts--> 
+		<!--animate-->
+		<link href="assets/css/animate.css" rel="stylesheet" type="text/css" media="all">
+		<script src="assets/js/wow.min.js"></script>
+			<script>
+				 new WOW().init();
+			</script>
+		<!--//end-animate-->
+		<!-- Metis Menu -->
+		<script src="assets/js/metisMenu.min.js"></script>
+		<script src="assets/js/custom.js"></script>
+		<link href="assets/css/custom.css" rel="stylesheet">
+	</head>
+	<body>
+		<div id="page-wrapper">
+			<div class="main-page login-page ">
+				<h3 class="title1">员工登录</h3>
+				<div class="widget-shadow">
+					<div class="login-top">
+						<h4>欢迎使用Delux酒店管理系统 </h4>
+					</div>
+					
+					<div class="login-body">
+						<form id="signInForm">
+							<input name="staffName" type="text" class="user" placeholder="请输入您的姓名" >
+							<input name="staffPassword" type="password" class="lock" placeholder="密码">
+							<div id="loginAlert" class="alert alert-warning" hidden="hidden" >
+   						 		<a href="#" class="close" data-dismiss="alert">&times;</a>
+    							<strong>警告！</strong>您的网络连接有问题。
+							</div>
+							<input type="button" onclick="doLogin()" name="Sign In" value="登 录">
+							<div class="forgot-grid">
+								<label class="checkbox"><input type="checkbox" id="rememberStaffName" name="rememberStaffName" value="1"><i></i>记住账号</label>
+								<div class="forgot">
+									<a href="#">忘记密码?</a>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</form>
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+		<div class="footer">
+		   <p>Copyright &copy;<a target="_blank" href="https://github.com/LiuZiyuan-CS">GitHub-liuziyuan.</a></p>
+		</div>
+		<!-- Classie -->
+		<script src="assets/js/classie.js"></script>
+				<script>
+					var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+						showLeftPush = document.getElementById( 'showLeftPush' ),
+						body = document.body;
+						
+					showLeftPush.onclick = function() {
+						classie.toggle( this, 'active' );
+						classie.toggle( body, 'cbp-spmenu-push-toright' );
+						classie.toggle( menuLeft, 'cbp-spmenu-open' );
+						disableOther( 'showLeftPush' );
+					};
+					
+					function disableOther( button ) {
+						if( button !== 'showLeftPush' ) {
+							classie.toggle( showLeftPush, 'disabled' );
+						}
+					}
+				</script>
+			<!--scrolling js-->
+			<script src="assets/js/jquery.nicescroll.js"></script>
+			<script src="assets/js/scripts.js"></script>
+			<!--//scrolling js-->
+			<!-- Bootstrap Core JavaScript -->
+		<script src="assets/js/bootstrap.js"> </script>
+		<!-- validate.js插件 -->
+		<script src="assets/js/jquery.validate.min.js"></script>
+		<!-- /validate.js插件 -->
+		<!-- cookie.js插件 -->
+		<script src="assets/js/jquery.cookie.js"></script>
+		<!-- /cookie.js插件 -->
+		<!-- 后台js代码 -->
+		<script type="text/javascript" src="assets/js/back.js"></script>
+		<!-- /后台js代码 -->
+	</body>
+	
+</html>

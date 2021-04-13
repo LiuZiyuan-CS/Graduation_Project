@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.deluxHotel.DeluxHotelMS.application")
+@MapperScan("com.deluxHotel.DeluxHotelMS")
 public class DeluxHotelMsApplication {
 
 	public static void main(String[] args) {

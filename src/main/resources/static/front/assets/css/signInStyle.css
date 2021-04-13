@@ -193,7 +193,7 @@ div#signin-agile input[type="text"],div#signin-agile input[type="password"],div#
     margin-top: 1em;
     margin-bottom: 2em;
     font-weight: 600;
-    font-family: 'Poiret One', cursive;
+    font-family: 'NSimSun', cursive;
 }
 
 div#signin-agile input[type="text"]:focus,div#signin-agile input[type="password"]:focus,div#signup-agile input[type="text"]:focus,div#signup-agile input[type="tel"]:focus,div#signup-agile input[type="email"]:focus,div#signup-agile input[type="password"]:focus  ,div#forget-agile input[type="text"]:focus,div#forget-agile input[type="tel"]:focus,div#forget-agile input[type="email"]:focus,div#forget-agile input[type="password"]:focus   {
@@ -601,9 +601,13 @@ div#signin-agile .sign-in, div#signup-agile .register {
 }
 p.copyright {
     padding: 10px 10px;
-} 
 }
 
+}
+em{
+    color: red;
+}
+        
 
 
 
