@@ -47,18 +47,31 @@ public class RoomTypeAction {
 	public PageInfo<RoomType> loadRoomTypeInfo(@RequestParam(defaultValue = "1")int pageNumber,@RequestParam(defaultValue = "10")int limit) {
 		return roomTypeBiz.loadRoomTypeInfo(pageNumber,limit);
 	}
+	/**
+	 * 修改房型信息
+	 * @param roomType  前端传输房型的相关信息
+	 * @return
+	 */
 	@RequestMapping("back/updateRoomTypeInfo")
 	@ResponseBody
 	public Result updateRoomTypeInfo(RoomType roomType) {
 		roomTypeBiz.updateRoomType(roomType);
 		return new Result(1,"修改成功",null);
 	}
+	/**
+	 * 新增房型
+	 * @param roomTypePic     房型图片
+	 * @param roomType		      前台新增房型信息
+	 * @param facilityService 房型对应的服务信息
+	 * @return
+	 */
 	@RequestMapping("back/addRoomType")
 	@ResponseBody
 	public Result addRoomType(@RequestParam("roomPic")MultipartFile roomTypePic,RoomType roomType,FacilityService facilityService) {
-		System.out.println(roomType.toString());
-		System.out.println(facilityService.toString());
-		System.out.println(roomTypePic.getOriginalFilename());
+		/**
+		 * 先验证roomTypeNumber和roomTypeName是否唯一，如果唯一则先将房型对应的服务信息插入FacilityService表，
+		 * 返回的主键作为roomType的一个参数，再插入房型信息到RoomType表
+		 */
 		try {
 			if(roomTypeBiz.isRoomTypeNumberAndRoomTypeNameUnique(roomType)) {
 				System.out.println("开始添加图片");

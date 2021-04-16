@@ -1,6 +1,5 @@
 package com.deluxHotel.DeluxHotelMS.interceptor;
 
-import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +15,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		String strUrl = request.getRequestURI();
 		/*
 		 * if(strUrl.endsWith("login.html") ) { return true; }
 		 */

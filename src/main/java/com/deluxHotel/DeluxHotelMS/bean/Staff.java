@@ -19,14 +19,7 @@ public class Staff {
 
     private String staffAuthority;
 
-    @Override
-	public String toString() {
-		return "Staff [staffId=" + staffId + ", staffName=" + staffName + ", staffSex=" + staffSex + ", staffIdcard="
-				+ staffIdcard + ", staffTelephone=" + staffTelephone + ", staffEmail=" + staffEmail + ", staffPassword="
-				+ staffPassword + ", staffProfile=" + staffProfile + ", staffAuthority=" + staffAuthority + "]";
-	}
-
-	public Integer getStaffId() {
+    public Integer getStaffId() {
         return staffId;
     }
 
