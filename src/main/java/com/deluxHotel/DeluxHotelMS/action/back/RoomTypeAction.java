@@ -74,13 +74,11 @@ public class RoomTypeAction {
 		 */
 		try {
 			if(roomTypeBiz.isRoomTypeNumberAndRoomTypeNameUnique(roomType)) {
-				System.out.println("开始添加图片");
 				String roomTypePicAddr=roomTypeBiz.storeRoomTypePic(roomTypePic);
 				roomType.setRoomTypePic(roomTypePicAddr);
 				int facilityServiceId=facilityServiceBiz.addFacilityService(facilityService);
 				roomType.setFacilityServiceId(facilityServiceId);
 				roomTypeBiz.addRoomtype(roomType);
-				System.out.println("新增房型成功！！！！！！");
 			}
 		} catch (BizException e) {
 			e.printStackTrace();

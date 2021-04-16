@@ -51,14 +51,12 @@ public class RoomTypeBiz {
 		RoomTypeExample roomTypeExample = new RoomTypeExample();
 		roomTypeExample.createCriteria().andRoomTypeNumberEqualTo(roomType.getRoomTypeNumber());
 		if(roomTypeMapper.selectByExample(roomTypeExample).size()!=0) {
-			throw new BizException("房型号重复，请重新填写房型号");
 		}
 		roomTypeExample.clear();
 		roomTypeExample.createCriteria().andRoomTypeNameEqualTo(roomType.getRoomTypeName());
 		if(roomTypeMapper.selectByExample(roomTypeExample).size()!=0) {
 			throw new BizException("房型名重复，请重新填写房型名");
 		}
-		System.out.println("判空成功");
 		return true;
 	}
 
@@ -75,7 +73,6 @@ public class RoomTypeBiz {
 
 	public void addRoomtype(RoomType roomType) {
 		roomTypeMapper.insertSelective(roomType);
-		System.out.println("数据插入成功");
 	}
 
 }
