@@ -11,29 +11,19 @@ public class RoomType {
 
     private String roomTypeSize;
 
-    private String roomTypeBedType;
-
-    private String roomTypeBedNumber;
-
     private String roomTypeAdult;
 
     private String roomTypeChild;
 
-    private String roomTypeWifi;
-
-    private String roomTypeRoomService;
-
     private String roomTypeAvailableNumber;
-
-    private String roomTypeBreakfast;
-
-    private String roomTypeLaundry;
-
-    private String roomTypeTransferService;
 
     private String roomTypeIntrodution;
 
     private String roomTypePic;
+
+    private Integer facilityServiceId;
+    
+    private FacilityService facilityService;
 
     public Integer getRoomTypeId() {
         return roomTypeId;
@@ -75,22 +65,6 @@ public class RoomType {
         this.roomTypeSize = roomTypeSize == null ? null : roomTypeSize.trim();
     }
 
-    public String getRoomTypeBedType() {
-        return roomTypeBedType;
-    }
-
-    public void setRoomTypeBedType(String roomTypeBedType) {
-        this.roomTypeBedType = roomTypeBedType == null ? null : roomTypeBedType.trim();
-    }
-
-    public String getRoomTypeBedNumber() {
-        return roomTypeBedNumber;
-    }
-
-    public void setRoomTypeBedNumber(String roomTypeBedNumber) {
-        this.roomTypeBedNumber = roomTypeBedNumber == null ? null : roomTypeBedNumber.trim();
-    }
-
     public String getRoomTypeAdult() {
         return roomTypeAdult;
     }
@@ -107,52 +81,12 @@ public class RoomType {
         this.roomTypeChild = roomTypeChild == null ? null : roomTypeChild.trim();
     }
 
-    public String getRoomTypeWifi() {
-        return roomTypeWifi;
-    }
-
-    public void setRoomTypeWifi(String roomTypeWifi) {
-        this.roomTypeWifi = roomTypeWifi == null ? null : roomTypeWifi.trim();
-    }
-
-    public String getRoomTypeRoomService() {
-        return roomTypeRoomService;
-    }
-
-    public void setRoomTypeRoomService(String roomTypeRoomService) {
-        this.roomTypeRoomService = roomTypeRoomService == null ? null : roomTypeRoomService.trim();
-    }
-
     public String getRoomTypeAvailableNumber() {
         return roomTypeAvailableNumber;
     }
 
     public void setRoomTypeAvailableNumber(String roomTypeAvailableNumber) {
         this.roomTypeAvailableNumber = roomTypeAvailableNumber == null ? null : roomTypeAvailableNumber.trim();
-    }
-
-    public String getRoomTypeBreakfast() {
-        return roomTypeBreakfast;
-    }
-
-    public void setRoomTypeBreakfast(String roomTypeBreakfast) {
-        this.roomTypeBreakfast = roomTypeBreakfast == null ? null : roomTypeBreakfast.trim();
-    }
-
-    public String getRoomTypeLaundry() {
-        return roomTypeLaundry;
-    }
-
-    public void setRoomTypeLaundry(String roomTypeLaundry) {
-        this.roomTypeLaundry = roomTypeLaundry == null ? null : roomTypeLaundry.trim();
-    }
-
-    public String getRoomTypeTransferService() {
-        return roomTypeTransferService;
-    }
-
-    public void setRoomTypeTransferService(String roomTypeTransferService) {
-        this.roomTypeTransferService = roomTypeTransferService == null ? null : roomTypeTransferService.trim();
     }
 
     public String getRoomTypeIntrodution() {
@@ -170,4 +104,31 @@ public class RoomType {
     public void setRoomTypePic(String roomTypePic) {
         this.roomTypePic = roomTypePic == null ? null : roomTypePic.trim();
     }
+
+    public Integer getFacilityServiceId() {
+        return facilityServiceId;
+    }
+
+    public void setFacilityServiceId(Integer facilityServiceId) {
+        this.facilityServiceId = facilityServiceId;
+    }
+
+	public FacilityService getFacilityService() {
+		return facilityService;
+	}
+
+	public void setFacilityService(FacilityService facilityService) {
+		this.facilityService = facilityService;
+	}
+
+	@Override
+	public String toString() {
+		return "RoomType [roomTypeId=" + roomTypeId + ", roomTypeNumber=" + roomTypeNumber + ", roomTypeName="
+				+ roomTypeName + ", roomTypePrice=" + roomTypePrice + ", roomTypeSize=" + roomTypeSize
+				+ ", roomTypeAdult=" + roomTypeAdult + ", roomTypeChild=" + roomTypeChild + ", roomTypeAvailableNumber="
+				+ roomTypeAvailableNumber + ", roomTypeIntrodution=" + roomTypeIntrodution + ", roomTypePic="
+				+ roomTypePic + ", facilityServiceId=" + facilityServiceId + ", facilityService=" + facilityService
+				+ "]";
+	}
+    
 }

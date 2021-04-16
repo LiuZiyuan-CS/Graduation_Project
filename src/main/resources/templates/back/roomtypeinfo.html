@@ -57,9 +57,442 @@
 		<div id="page-wrapper">
 			<div class="main-page">
 				<h3 class="title1">房型信息一览表</h3>
+				<div id="toolbar" class="btn-toolbar" role="toolbar">
+					<div class="btn-group">
+					    <button class="btn btn-primary fa fa-plus nav_icon" data-toggle="modal" data-target="#addRoomTypeModal" type="button">&nbsp;新增房型</button>
+					</div>
+				</div>
 				<table id="roomTypeInfoTable" class="table table-bordered">
 				</table>
 			</div>
+			<!-- 房型信息模态框 -->
+		<div class="modal fade" id="roomTypeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog modal-lg">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		               <h4 class="title3">房型信息</h4>
+		            </div>
+		            <div class="modal-body">
+						<form id="roomTypeForm">
+							<div class="sign-u">
+									<div class="sign-up1">
+										<h4>房型号 :</h4>
+									</div>
+									<div class="sign-up2">
+											<input id="roomTypeNumber" name="roomTypeNumber" type="text" readonly="readonly" required>
+									</div>
+									<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>房型名称 :</h4>
+								</div>
+								<div class="sign-up2">
+									<div class="input-group">
+										<input id="roomTypeName" name="roomTypeName" type="text" required>
+										<span class="input-group-addon">
+                    						<input type="checkbox" onclick="modify(this,'roomTypeName')"/>
+               		 					</span>
+									</div>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>价格 :</h4>
+								</div>
+								<div class="sign-up2">
+									<div class="input-group">
+										<input id="roomTypePrice" name="roomTypePrice" type="text" required>
+										<span class="input-group-addon">
+                    						<input type="checkbox" onclick="modify(this,'roomTypePrice')"/>
+               		 					</span>
+									</div>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>房型面积 :</h4>
+								</div>
+								<div class="sign-up2">
+									<div class="input-group">
+										<input id="roomTypeSize" name="roomTypeSize" type="text" required>
+										<span class="input-group-addon">
+                    						<input type="checkbox" onclick="modify(this,'roomTypeSize')"/>
+               		 					</span>
+									</div>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>最大入住成人数 :</h4>
+								</div>
+								<div class="sign-up2">
+									<div class="input-group">
+										<input id="roomTypeAdult" name="roomTypeAdult" type="text" required>
+										<span class="input-group-addon">
+                    						<input type="checkbox" onclick="modify(this,'roomTypeAdult')"/>
+               		 					</span>
+									</div>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>最大入住儿童数 :</h4>
+								</div>
+								<div class="sign-up2">
+									<div class="input-group">
+										<input id="roomTypeChild" name="roomTypeChild" type="text">
+										<span class="input-group-addon">
+                    						<input type="checkbox" onclick="modify(this,'roomTypeChild')"/>
+               		 					</span>
+									</div>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>房型介绍 :</h4>
+								</div>
+								<div class="sign-up2">
+									<div class="input-group">
+										<textarea  class="form-control1 control2" id="roomTypeIntrodution" name="roomTypeIntrodution"></textarea>
+										<span class="input-group-addon">
+                    						<input type="checkbox" onclick="modify(this,'roomTypeIntrodution')"/>
+               		 					</span>
+									</div>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</form>
+		            </div>
+		            <div class="modal-footer">
+		             <button id="roomTypeUpdateBtn" type="button" class="btn btn-primary" onclick="updateRoomTypeInfo()">修改</button>
+		                <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+		            </div>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
+		<!-- /房型信息模态框 -->
+		<!-- 房型对应服务模态框 -->
+		<div class="modal fade" id="facilityServiceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog modal-lg">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		               <h4 class="title3">房型服务信息</h4>
+		            </div>
+		            <div class="modal-body">
+						<form id="facilityServiceForm">
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>床铺型号 :</h4>
+								</div>
+								<div class="sign-up2">
+									<div class="input-group">
+										<input id="facilityServiceBedType" name="facilityServiceBedType" type="text" required>
+										<span class="input-group-addon">
+                    						<input type="checkbox" onclick="modify(this,'facilityServiceBedType')"/>
+               		 					</span>
+									</div>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>床铺数量 :</h4>
+								</div>
+								<div class="sign-up2">
+									<div class="input-group">
+										<input id="facilityServiceBedNumber" name="facilityServiceBedNumber" type="text" required>
+										<span class="input-group-addon">
+                    						<input type="checkbox" onclick="modify(this,'facilityServiceBedNumber')"/>
+               		 					</span>
+									</div>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>Wi-Fi :</h4>
+								</div>
+								<div class="sign-up2">
+									<label>
+										<input type="radio"  value="1" name="facilityServiceWifi" >
+										全覆盖
+									</label>
+									<label>
+										<input type="radio"  value="0" name="facilityServiceWifi" >
+										无
+									</label>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>客房服务 :</h4>
+								</div>
+								<div class="sign-up2">
+									<label>
+										<input type="radio" value="1" name="facilityServiceRoomService" required>
+										免费提供
+									</label>
+									<label>
+										<input type="radio" value="0" name="facilityServiceRoomService" required>
+										有偿使用
+									</label>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>早餐服务 :</h4>
+								</div>
+								<div class="sign-up2">
+									<label>
+										<input type="radio" value="1" name="facilityServiceBreakfast" required>
+										免费提供
+									</label>
+									<label>
+										<input type="radio" value="0" name="facilityServiceBreakfast" required>
+										有偿使用
+									</label>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>洗衣服务 :</h4>
+								</div>
+								<div class="sign-up2">
+									<label>
+										<input type="radio" value="1" name="facilityServiceLaundry" required>
+										免费提供
+									</label>
+									<label>
+										<input type="radio" value="0" name="facilityServiceLaundry" required>
+										有偿使用
+									</label>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>接送服务 :</h4>
+								</div>
+								<div class="sign-up2">
+									<label>
+										<input type="radio" value="1" name="facilityServiceTransferService" required>
+										免费提供
+									</label>
+									<label>
+										<input type="radio" value="0" name="facilityServiceTransferService" required>
+										有偿使用
+									</label>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</form>
+		            </div>
+		            <div class="modal-footer">
+		             <button id="facilityServiceUpdateBtn" type="button" class="btn btn-primary">修改</button>
+		                <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+		            </div>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
+		<!-- /房型对应服务模态框 -->
+		<!-- 新增房型模态框-->
+		<div class="modal fade" id="addRoomTypeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog modal-lg">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		               <h4 class="title3">新增房型</h4>
+		            </div>
+		            <div class="modal-body">
+						<form id="addRoomTypeForm">
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>房型号码（唯一） :</h4>
+								</div>
+								<div class="sign-up2">
+									<input name="roomTypeNumber" type="text">
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>房型名 （唯一）:</h4>
+								</div>
+								<div class="sign-up2">
+									<input name="roomTypeName" type="text" >
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>房型价格 :</h4>
+								</div>
+								<div class="sign-up2">
+									<input name="roomTypePrice" type="text">
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>房型面积 :</h4>
+								</div>
+								<div class="sign-up2">
+										<input name="roomTypeSize" type="text">
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>最大入住成人数 :</h4>
+								</div>
+								<div class="sign-up2">
+										<input name="roomTypeAdult" type="text" >
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>最大入住儿童数 :</h4>
+								</div>
+								<div class="sign-up2">
+									<input name="roomTypeChild" type="text" >
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>房型介绍（不超过60字） :</h4>
+								</div>
+								<div class="sign-up2">
+									<textarea class="form-control1 control2" name="roomTypeIntrodution"></textarea>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>房型图片（jpg和png） :</h4>
+								</div>
+								<div class="sign-up2">
+									<input style="margin-top:3%;" type="file" name="roomPic">
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>床铺型号 :</h4>
+								</div>
+								<div class="sign-up2">
+										<input  name="facilityServiceBedType" type="text">
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>床铺数量 :</h4>
+								</div>
+								<div class="sign-up2">
+										<input name="facilityServiceBedNumber" type="text" >
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>Wi-Fi :</h4>
+								</div>
+								<div class="sign-up2">
+									<label>
+										<input type="radio"  value="1" name="facilityServiceWifi">
+										全覆盖
+									</label>
+									<label>
+										<input type="radio"  value="0" name="facilityServiceWifi">
+										无
+									</label>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>客房服务 :</h4>
+								</div>
+								<div class="sign-up2">
+									<label>
+										<input type="radio" value="1" name="facilityServiceRoomService">
+										免费提供
+									</label>
+									<label>
+										<input type="radio" value="0" name="facilityServiceRoomService">
+										有偿使用
+									</label>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>早餐服务 :</h4>
+								</div>
+								<div class="sign-up2">
+									<label>
+										<input type="radio" value="1" name="facilityServiceBreakfast" >
+										免费提供
+									</label>
+									<label>
+										<input type="radio" value="0" name="facilityServiceBreakfast">
+										有偿使用
+									</label>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>洗衣服务 :</h4>
+								</div>
+								<div class="sign-up2">
+									<label>
+										<input type="radio" value="1" name="facilityServiceLaundry" >
+										免费提供
+									</label>
+									<label>
+										<input type="radio" value="0" name="facilityServiceLaundry" >
+										有偿使用
+									</label>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="sign-u">
+								<div class="sign-up1">
+									<h4>接送服务 :</h4>
+								</div>
+								<div class="sign-up2">
+									<label>
+										<input type="radio" value="1" name="facilityServiceTransferService" >
+										免费提供
+									</label>
+									<label>
+										<input type="radio" value="0" name="facilityServiceTransferService" >
+										有偿使用
+									</label>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</form>
+		            </div>
+		            <div class="modal-footer">
+		             <button type="button" class="btn btn-primary" onclick="addRoomType()">新增</button>
+		                <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+		            </div>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
+		<!-- /新增房型模态框 -->
 		</div>
 	</div>
 	<!--footer-->
@@ -86,8 +519,8 @@
 			}
 		</script>
 	<!--scrolling js-->
-	<script src="assets/js/jquery.nicescroll.js"></script>
-	<script src="assets/js/scripts.js"></script>
+	<!-- <script src="assets/js/jquery.nicescroll.js"></script>
+	<script src="assets/js/scripts.js"></script> -->
 	<!--//scrolling js-->
 	<!-- 文件上传js -->
 	<script type="text/javascript" src="assets/js/jquery.iframe-transport.js"></script>
@@ -95,191 +528,7 @@
 	<script type="text/javascript" src="assets/js/jquery.fileupload.js"></script>
 	<!-- /文件上传js -->
 	<!-- roomtypeinfo页面自编的js -->
-   	<script type="text/javascript" >
-   	/* 表格加载 */
-   	$('#roomTypeInfoTable')
-   			.bootstrapTable(
-   					{
-   						method : "POST",
-   						contentType : "application/x-www-form-urlencoded",
-   						dataType : "json",
-   						url : "loadRoomTypeInfo", // 执行加载表格的PostMapping
-   						pagination : true, // 分页
-   						striped : true, // 是否显示行间隔色
-   						search : false, // 显示搜索框
-   						sidePagination : "server", // 服务端处理分页
-   						showRefresh : true,
-   						pageNumber : 1, // 初始化加载第一页，默认第一页
-   						pageSize : 10, // 每页的记录行数（*）
-   						pageList : [ 5, 10, 15, 20 ],
-   						classes : "table table-bordered table-striped table-sm ", // 这里设置表格样式
-   						// toolbar : '#toolbar',
-   						// detailView: false, //扩展子表
-   						showToggle : true, // 是否显示详细视图和列表视图的切换按钮
-   						showColumns : true, // 是否显示所有的列
-   						cardView : false, // 是否显示详细视图
-   						queryParams : function queryParams(params) {
-   							params.search = this.search;
-   							params.pageNumber = this.pageNumber;
-   							return params;
-   						},
-   						sidePagination : "server",
-   						responseHandler : function(result) {
-   							// console.log(result);
-   							return {
-   								"total" : result.total,// 总页数
-   								"rows" : result.list
-   							// 数据
-   							}
-   						},
-   						columns : [
-   								{
-   									field : 'roomTypeNumber',
-   									sortable : true,
-   									title : '房型号'
-   								},
-   								{
-   									field : 'roomTypeName',
-   									sortable : true,
-   									title : '房型名称',
-   								},
-   								{
-   									field : 'roomTypePrice',
-   									sortable : true,
-   									title : '价格',
-   								},
-   								{
-   									field : 'roomTypeSize',
-   									sortable : true,
-   									title : '房型面积',
-   								/*
-   								 * formatter:function formatDate(value,row,index){
-   								 * var d = new Date(value); var
-   								 * times=d.getFullYear() + '年' + (d.getMonth() + 1) +
-   								 * '月' + d.getDate() + '日 ' + d.getHours() + ':' +
-   								 * d.getMinutes() + ':' + d.getSeconds(); return
-   								 * times; }
-   								 */
-   								},
-   								{
-   									field : 'roomTypeBedType',
-   									title : '床垫类型',
-   									sortable : true,
-   								},
-   								{
-   									field : 'roomTypeBedNumber',
-   									sortable : true,
-   									title : '床铺数量',
-   								/*
-   								 * formatter : function formatStatus( value, row,
-   								 * index) { var str; switch (value) { case "0": str =
-   								 * "已完结"; break; case "1": str = "未完结"; break; }
-   								 * return str; }
-   								 */
-   								},
-   								{
-   									field : 'roomTypeAdult',
-   									sortable : true,
-   									title : '最大入住成人数',
-   								},
-   								{
-   									field : 'roomTypeChild',
-   									sortable : true,
-   									title : '最大入住儿童数',
-   								},
-   								{
-   									field : 'roomTypeRoomService',
-   									sortable : true,
-   									title : '房间服务',
-   									formatter : function formatStatus( value, row,index) { 
-   										var str; 
-   										switch (value) { 
-	   										case "0": 
-	   											str ="有偿提供"; 
-	   											break;
-	   										case "1": 
-	   											str = "提供"; 
-	   											break; 
-   										}
-   		   								  return str; 
-   		   							}
-   								},
-   								{
-   									field : 'roomTypeAvailableNumber',
-   									sortable : true,
-   									title : '剩余可用房间数',
-   								},
-   								{
-   									field : 'roomTypeBreakfast',
-   									sortable : true,
-   									title : '早餐',
-   									formatter : function formatStatus( value, row,index) { 
-   										var str; 
-   										switch (value) { 
-	   										case "0": 
-	   											str ="有偿提供"; 
-	   											break;
-	   										case "1": 
-	   											str = "提供"; 
-	   											break; 
-   										}
-   		   								  return str; 
-   		   							}
-   								},
-   								{
-   									field : 'roomTypeLaundry',
-   									sortable : true,
-   									title : '房间内含洗衣间',
-   									formatter : function formatStatus( value, row,index) { 
-   										var str; 
-   										switch (value) { 
-	   										case "0": 
-	   											str ="有偿提供"; 
-	   											break;
-	   										case "1": 
-	   											str = "提供"; 
-	   											break; 
-   										}
-   		   								  return str; 
-   		   							}
-   								},
-   								{
-   									filed : 'staffId',
-   									title : '操作',
-   									formatter : function(value, row, index) {
-   										// 通过formatter可以自定义列显示的内容
-   										// value：当前field的值，即id
-   										// row：当前行的数据
-   										var staff = JSON.stringify(row);
-   										var result = "";
-   										if (row.staffId != '1') {
-   											result += "<a class='btn btn-xs blue'  title='修改' onclick='updateStaff("
-   													+ staff
-   													+ ")'><span class='glyphicon glyphicon-pencil'></span></a>"
-   													+ "<a class='btn btn-xs blue'  title='重置密码' onclick='resetStaffPassword("
-   													+ staff
-   													+ ")'><span class='	glyphicon glyphicon-repeat'></span></a>"
-   													+ "<a class='btn btn-xs red'  title='删除' onclick='checkAccountById("
-   													+ staff
-   													+ ")'><span class='	glyphicon glyphicon-remove'></span></a>";
-   										} else {
-   											result += "系统管理员账号，无权修改";
-   										}
-   										return result;
-   									}
-   								}, ],
-   					// 注册加载子表的事件。注意下这里的三个参数！
-   					// index：父表当前行的行索引。
-   					// row：父表当前行的Json数据对象。
-   					// $detail：当前行下面创建的新行里面的td对象。
-   					/*
-   					 * onExpandRow: function (index, row, $detail) {
-   					 * //console.log(row); if(row.consumptionType==1){
-   					 * InitSubTable(index, row, $detail); } }
-   					 */
-
-   					});
-   	</script>
+   	<script type="text/javascript" src="assets/js/roomtypeinfo.js"></script>
    	<!-- /roomtypeinfo页面自编的js -->
 </body>
 </html>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deluxHotel.DeluxHotelMS.dao.FacilityServiceMapper">
+  <resultMap id="BaseResultMap" type="com.deluxHotel.DeluxHotelMS.bean.FacilityService">
+    <id column="facility_service_id" jdbcType="INTEGER" property="facilityServiceId" />
+    <result column="facility_service_bed_type" jdbcType="VARCHAR" property="facilityServiceBedType" />
+    <result column="facility_service_bed_number" jdbcType="VARCHAR" property="facilityServiceBedNumber" />
+    <result column="facility_service_wifi" jdbcType="VARCHAR" property="facilityServiceWifi" />
+    <result column="facility_service_room_service" jdbcType="VARCHAR" property="facilityServiceRoomService" />
+    <result column="facility_service_breakfast" jdbcType="VARCHAR" property="facilityServiceBreakfast" />
+    <result column="facility_service_laundry" jdbcType="VARCHAR" property="facilityServiceLaundry" />
+    <result column="facility_service_transfer_service" jdbcType="VARCHAR" property="facilityServiceTransferService" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    facility_service_id, facility_service_bed_type, facility_service_bed_number, facility_service_wifi, 
+    facility_service_room_service, facility_service_breakfast, facility_service_laundry, 
+    facility_service_transfer_service
+  </sql>
+  <select id="selectByExample" parameterType="com.deluxHotel.DeluxHotelMS.bean.FacilityServiceExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from facility_service
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from facility_service
+    where facility_service_id = #{facilityServiceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from facility_service
+    where facility_service_id = #{facilityServiceId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.deluxHotel.DeluxHotelMS.bean.FacilityServiceExample">
+    delete from facility_service
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.deluxHotel.DeluxHotelMS.bean.FacilityService">
+    insert into facility_service (facility_service_id, facility_service_bed_type, 
+      facility_service_bed_number, facility_service_wifi, 
+      facility_service_room_service, facility_service_breakfast, 
+      facility_service_laundry, facility_service_transfer_service
+      )
+    values (#{facilityServiceId,jdbcType=INTEGER}, #{facilityServiceBedType,jdbcType=VARCHAR}, 
+      #{facilityServiceBedNumber,jdbcType=VARCHAR}, #{facilityServiceWifi,jdbcType=VARCHAR}, 
+      #{facilityServiceRoomService,jdbcType=VARCHAR}, #{facilityServiceBreakfast,jdbcType=VARCHAR}, 
+      #{facilityServiceLaundry,jdbcType=VARCHAR}, #{facilityServiceTransferService,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.deluxHotel.DeluxHotelMS.bean.FacilityService">
+    insert into facility_service
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="facilityServiceId != null">
+        facility_service_id,
+      </if>
+      <if test="facilityServiceBedType != null">
+        facility_service_bed_type,
+      </if>
+      <if test="facilityServiceBedNumber != null">
+        facility_service_bed_number,
+      </if>
+      <if test="facilityServiceWifi != null">
+        facility_service_wifi,
+      </if>
+      <if test="facilityServiceRoomService != null">
+        facility_service_room_service,
+      </if>
+      <if test="facilityServiceBreakfast != null">
+        facility_service_breakfast,
+      </if>
+      <if test="facilityServiceLaundry != null">
+        facility_service_laundry,
+      </if>
+      <if test="facilityServiceTransferService != null">
+        facility_service_transfer_service,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="facilityServiceId != null">
+        #{facilityServiceId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityServiceBedType != null">
+        #{facilityServiceBedType,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityServiceBedNumber != null">
+        #{facilityServiceBedNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityServiceWifi != null">
+        #{facilityServiceWifi,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityServiceRoomService != null">
+        #{facilityServiceRoomService,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityServiceBreakfast != null">
+        #{facilityServiceBreakfast,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityServiceLaundry != null">
+        #{facilityServiceLaundry,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityServiceTransferService != null">
+        #{facilityServiceTransferService,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.deluxHotel.DeluxHotelMS.bean.FacilityServiceExample" resultType="java.lang.Long">
+    select count(*) from facility_service
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update facility_service
+    <set>
+      <if test="record.facilityServiceId != null">
+        facility_service_id = #{record.facilityServiceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.facilityServiceBedType != null">
+        facility_service_bed_type = #{record.facilityServiceBedType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facilityServiceBedNumber != null">
+        facility_service_bed_number = #{record.facilityServiceBedNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facilityServiceWifi != null">
+        facility_service_wifi = #{record.facilityServiceWifi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facilityServiceRoomService != null">
+        facility_service_room_service = #{record.facilityServiceRoomService,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facilityServiceBreakfast != null">
+        facility_service_breakfast = #{record.facilityServiceBreakfast,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facilityServiceLaundry != null">
+        facility_service_laundry = #{record.facilityServiceLaundry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facilityServiceTransferService != null">
+        facility_service_transfer_service = #{record.facilityServiceTransferService,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update facility_service
+    set facility_service_id = #{record.facilityServiceId,jdbcType=INTEGER},
+      facility_service_bed_type = #{record.facilityServiceBedType,jdbcType=VARCHAR},
+      facility_service_bed_number = #{record.facilityServiceBedNumber,jdbcType=VARCHAR},
+      facility_service_wifi = #{record.facilityServiceWifi,jdbcType=VARCHAR},
+      facility_service_room_service = #{record.facilityServiceRoomService,jdbcType=VARCHAR},
+      facility_service_breakfast = #{record.facilityServiceBreakfast,jdbcType=VARCHAR},
+      facility_service_laundry = #{record.facilityServiceLaundry,jdbcType=VARCHAR},
+      facility_service_transfer_service = #{record.facilityServiceTransferService,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.deluxHotel.DeluxHotelMS.bean.FacilityService">
+    update facility_service
+    <set>
+      <if test="facilityServiceBedType != null">
+        facility_service_bed_type = #{facilityServiceBedType,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityServiceBedNumber != null">
+        facility_service_bed_number = #{facilityServiceBedNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityServiceWifi != null">
+        facility_service_wifi = #{facilityServiceWifi,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityServiceRoomService != null">
+        facility_service_room_service = #{facilityServiceRoomService,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityServiceBreakfast != null">
+        facility_service_breakfast = #{facilityServiceBreakfast,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityServiceLaundry != null">
+        facility_service_laundry = #{facilityServiceLaundry,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityServiceTransferService != null">
+        facility_service_transfer_service = #{facilityServiceTransferService,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where facility_service_id = #{facilityServiceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.deluxHotel.DeluxHotelMS.bean.FacilityService">
+    update facility_service
+    set facility_service_bed_type = #{facilityServiceBedType,jdbcType=VARCHAR},
+      facility_service_bed_number = #{facilityServiceBedNumber,jdbcType=VARCHAR},
+      facility_service_wifi = #{facilityServiceWifi,jdbcType=VARCHAR},
+      facility_service_room_service = #{facilityServiceRoomService,jdbcType=VARCHAR},
+      facility_service_breakfast = #{facilityServiceBreakfast,jdbcType=VARCHAR},
+      facility_service_laundry = #{facilityServiceLaundry,jdbcType=VARCHAR},
+      facility_service_transfer_service = #{facilityServiceTransferService,jdbcType=VARCHAR}
+    where facility_service_id = #{facilityServiceId,jdbcType=INTEGER}
+  </update>
+</mapper>

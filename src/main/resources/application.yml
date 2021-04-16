@@ -17,6 +17,7 @@ spring:
       classpath:/resources/,
       classpath:/public/,
       file:G:/Graduation_Project/Profile/,
+      file:G:/Graduation_Project/RoomTypePic/,
  
   datasource: 
     url: jdbc:mysql://127.0.0.1/deluxhotelms?useUnicode=true&characterEncoding=UTF-8
@@ -34,10 +35,15 @@ mail:
   sender: 
     addr: 799751640@qq.com
 
-userProfileAddr: G:\Graduation_Project\Profile\
-staffProfileAddr: G:\Graduation_Project\Profile\
+userProfileAddr: G:\Graduation_Project\Profile\,
+staffProfileAddr: G:\Graduation_Project\Profile\,
 userDefaultProfileFileName: ../default_user.jpg,
 staffDefaultProfileFileName: ../default_staff.jpg,
+
+roomType:
+   picture:
+      dir: G:\Graduation_Project\RoomTypePic\,
+
 logging:
   level:
     com: debug

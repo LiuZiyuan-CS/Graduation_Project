@@ -7,18 +7,14 @@
     <result column="room_type_name" jdbcType="VARCHAR" property="roomTypeName" />
     <result column="room_type_price" jdbcType="VARCHAR" property="roomTypePrice" />
     <result column="room_type_size" jdbcType="VARCHAR" property="roomTypeSize" />
-    <result column="room_type_bed_type" jdbcType="VARCHAR" property="roomTypeBedType" />
-    <result column="room_type_bed_number" jdbcType="VARCHAR" property="roomTypeBedNumber" />
     <result column="room_type_adult" jdbcType="VARCHAR" property="roomTypeAdult" />
     <result column="room_type_child" jdbcType="VARCHAR" property="roomTypeChild" />
-    <result column="room_type_wifi" jdbcType="VARCHAR" property="roomTypeWifi" />
-    <result column="room_type_room_service" jdbcType="VARCHAR" property="roomTypeRoomService" />
     <result column="room_type_available_number" jdbcType="VARCHAR" property="roomTypeAvailableNumber" />
-    <result column="room_type_breakfast" jdbcType="VARCHAR" property="roomTypeBreakfast" />
-    <result column="room_type_laundry" jdbcType="VARCHAR" property="roomTypeLaundry" />
-    <result column="room_type_transfer_service" jdbcType="VARCHAR" property="roomTypeTransferService" />
     <result column="room_type_introdution" jdbcType="VARCHAR" property="roomTypeIntrodution" />
     <result column="room_type_pic" jdbcType="VARCHAR" property="roomTypePic" />
+    <result column="facility_service_id" jdbcType="INTEGER" property="facilityServiceId" />
+    <association property="facilityService" column="facility_service_id" select="com.deluxHotel.DeluxHotelMS.dao.FacilityServiceMapper.selectByPrimaryKey">
+    </association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -80,9 +76,8 @@
   </sql>
   <sql id="Base_Column_List">
     room_type_id, room_type_number, room_type_name, room_type_price, room_type_size, 
-    room_type_bed_type, room_type_bed_number, room_type_adult, room_type_child, room_type_wifi, 
-    room_type_room_service, room_type_available_number, room_type_breakfast, room_type_laundry, 
-    room_type_transfer_service, room_type_introdution, room_type_pic
+    room_type_adult, room_type_child, room_type_available_number, room_type_introdution, 
+    room_type_pic, facility_service_id
   </sql>
   <select id="selectByExample" parameterType="com.deluxHotel.DeluxHotelMS.bean.RoomTypeExample" resultMap="BaseResultMap">
     select
@@ -116,17 +111,15 @@
   </delete>
   <insert id="insert" parameterType="com.deluxHotel.DeluxHotelMS.bean.RoomType">
     insert into room_type (room_type_id, room_type_number, room_type_name, 
-      room_type_price, room_type_size, room_type_bed_type, 
-      room_type_bed_number, room_type_adult, room_type_child, 
-      room_type_wifi, room_type_room_service, room_type_available_number, 
-      room_type_breakfast, room_type_laundry, room_type_transfer_service, 
-      room_type_introdution, room_type_pic)
+      room_type_price, room_type_size, room_type_adult, 
+      room_type_child, room_type_available_number, 
+      room_type_introdution, room_type_pic, facility_service_id
+      )
     values (#{roomTypeId,jdbcType=INTEGER}, #{roomTypeNumber,jdbcType=VARCHAR}, #{roomTypeName,jdbcType=VARCHAR}, 
-      #{roomTypePrice,jdbcType=VARCHAR}, #{roomTypeSize,jdbcType=VARCHAR}, #{roomTypeBedType,jdbcType=VARCHAR}, 
-      #{roomTypeBedNumber,jdbcType=VARCHAR}, #{roomTypeAdult,jdbcType=VARCHAR}, #{roomTypeChild,jdbcType=VARCHAR}, 
-      #{roomTypeWifi,jdbcType=VARCHAR}, #{roomTypeRoomService,jdbcType=VARCHAR}, #{roomTypeAvailableNumber,jdbcType=VARCHAR}, 
-      #{roomTypeBreakfast,jdbcType=VARCHAR}, #{roomTypeLaundry,jdbcType=VARCHAR}, #{roomTypeTransferService,jdbcType=VARCHAR}, 
-      #{roomTypeIntrodution,jdbcType=VARCHAR}, #{roomTypePic,jdbcType=VARCHAR})
+      #{roomTypePrice,jdbcType=VARCHAR}, #{roomTypeSize,jdbcType=VARCHAR}, #{roomTypeAdult,jdbcType=VARCHAR}, 
+      #{roomTypeChild,jdbcType=VARCHAR}, #{roomTypeAvailableNumber,jdbcType=VARCHAR}, 
+      #{roomTypeIntrodution,jdbcType=VARCHAR}, #{roomTypePic,jdbcType=VARCHAR}, #{facilityServiceId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.deluxHotel.DeluxHotelMS.bean.RoomType">
     insert into room_type
@@ -146,41 +139,23 @@
       <if test="roomTypeSize != null">
         room_type_size,
       </if>
-      <if test="roomTypeBedType != null">
-        room_type_bed_type,
-      </if>
-      <if test="roomTypeBedNumber != null">
-        room_type_bed_number,
-      </if>
       <if test="roomTypeAdult != null">
         room_type_adult,
       </if>
       <if test="roomTypeChild != null">
         room_type_child,
       </if>
-      <if test="roomTypeWifi != null">
-        room_type_wifi,
-      </if>
-      <if test="roomTypeRoomService != null">
-        room_type_room_service,
-      </if>
       <if test="roomTypeAvailableNumber != null">
         room_type_available_number,
-      </if>
-      <if test="roomTypeBreakfast != null">
-        room_type_breakfast,
-      </if>
-      <if test="roomTypeLaundry != null">
-        room_type_laundry,
-      </if>
-      <if test="roomTypeTransferService != null">
-        room_type_transfer_service,
       </if>
       <if test="roomTypeIntrodution != null">
         room_type_introdution,
       </if>
       <if test="roomTypePic != null">
         room_type_pic,
+      </if>
+      <if test="facilityServiceId != null">
+        facility_service_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -199,41 +174,23 @@
       <if test="roomTypeSize != null">
         #{roomTypeSize,jdbcType=VARCHAR},
       </if>
-      <if test="roomTypeBedType != null">
-        #{roomTypeBedType,jdbcType=VARCHAR},
-      </if>
-      <if test="roomTypeBedNumber != null">
-        #{roomTypeBedNumber,jdbcType=VARCHAR},
-      </if>
       <if test="roomTypeAdult != null">
         #{roomTypeAdult,jdbcType=VARCHAR},
       </if>
       <if test="roomTypeChild != null">
         #{roomTypeChild,jdbcType=VARCHAR},
       </if>
-      <if test="roomTypeWifi != null">
-        #{roomTypeWifi,jdbcType=VARCHAR},
-      </if>
-      <if test="roomTypeRoomService != null">
-        #{roomTypeRoomService,jdbcType=VARCHAR},
-      </if>
       <if test="roomTypeAvailableNumber != null">
         #{roomTypeAvailableNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="roomTypeBreakfast != null">
-        #{roomTypeBreakfast,jdbcType=VARCHAR},
-      </if>
-      <if test="roomTypeLaundry != null">
-        #{roomTypeLaundry,jdbcType=VARCHAR},
-      </if>
-      <if test="roomTypeTransferService != null">
-        #{roomTypeTransferService,jdbcType=VARCHAR},
       </if>
       <if test="roomTypeIntrodution != null">
         #{roomTypeIntrodution,jdbcType=VARCHAR},
       </if>
       <if test="roomTypePic != null">
         #{roomTypePic,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityServiceId != null">
+        #{facilityServiceId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -261,41 +218,23 @@
       <if test="record.roomTypeSize != null">
         room_type_size = #{record.roomTypeSize,jdbcType=VARCHAR},
       </if>
-      <if test="record.roomTypeBedType != null">
-        room_type_bed_type = #{record.roomTypeBedType,jdbcType=VARCHAR},
-      </if>
-      <if test="record.roomTypeBedNumber != null">
-        room_type_bed_number = #{record.roomTypeBedNumber,jdbcType=VARCHAR},
-      </if>
       <if test="record.roomTypeAdult != null">
         room_type_adult = #{record.roomTypeAdult,jdbcType=VARCHAR},
       </if>
       <if test="record.roomTypeChild != null">
         room_type_child = #{record.roomTypeChild,jdbcType=VARCHAR},
       </if>
-      <if test="record.roomTypeWifi != null">
-        room_type_wifi = #{record.roomTypeWifi,jdbcType=VARCHAR},
-      </if>
-      <if test="record.roomTypeRoomService != null">
-        room_type_room_service = #{record.roomTypeRoomService,jdbcType=VARCHAR},
-      </if>
       <if test="record.roomTypeAvailableNumber != null">
         room_type_available_number = #{record.roomTypeAvailableNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="record.roomTypeBreakfast != null">
-        room_type_breakfast = #{record.roomTypeBreakfast,jdbcType=VARCHAR},
-      </if>
-      <if test="record.roomTypeLaundry != null">
-        room_type_laundry = #{record.roomTypeLaundry,jdbcType=VARCHAR},
-      </if>
-      <if test="record.roomTypeTransferService != null">
-        room_type_transfer_service = #{record.roomTypeTransferService,jdbcType=VARCHAR},
       </if>
       <if test="record.roomTypeIntrodution != null">
         room_type_introdution = #{record.roomTypeIntrodution,jdbcType=VARCHAR},
       </if>
       <if test="record.roomTypePic != null">
         room_type_pic = #{record.roomTypePic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facilityServiceId != null">
+        facility_service_id = #{record.facilityServiceId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -309,18 +248,12 @@
       room_type_name = #{record.roomTypeName,jdbcType=VARCHAR},
       room_type_price = #{record.roomTypePrice,jdbcType=VARCHAR},
       room_type_size = #{record.roomTypeSize,jdbcType=VARCHAR},
-      room_type_bed_type = #{record.roomTypeBedType,jdbcType=VARCHAR},
-      room_type_bed_number = #{record.roomTypeBedNumber,jdbcType=VARCHAR},
       room_type_adult = #{record.roomTypeAdult,jdbcType=VARCHAR},
       room_type_child = #{record.roomTypeChild,jdbcType=VARCHAR},
-      room_type_wifi = #{record.roomTypeWifi,jdbcType=VARCHAR},
-      room_type_room_service = #{record.roomTypeRoomService,jdbcType=VARCHAR},
       room_type_available_number = #{record.roomTypeAvailableNumber,jdbcType=VARCHAR},
-      room_type_breakfast = #{record.roomTypeBreakfast,jdbcType=VARCHAR},
-      room_type_laundry = #{record.roomTypeLaundry,jdbcType=VARCHAR},
-      room_type_transfer_service = #{record.roomTypeTransferService,jdbcType=VARCHAR},
       room_type_introdution = #{record.roomTypeIntrodution,jdbcType=VARCHAR},
-      room_type_pic = #{record.roomTypePic,jdbcType=VARCHAR}
+      room_type_pic = #{record.roomTypePic,jdbcType=VARCHAR},
+      facility_service_id = #{record.facilityServiceId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -340,41 +273,23 @@
       <if test="roomTypeSize != null">
         room_type_size = #{roomTypeSize,jdbcType=VARCHAR},
       </if>
-      <if test="roomTypeBedType != null">
-        room_type_bed_type = #{roomTypeBedType,jdbcType=VARCHAR},
-      </if>
-      <if test="roomTypeBedNumber != null">
-        room_type_bed_number = #{roomTypeBedNumber,jdbcType=VARCHAR},
-      </if>
       <if test="roomTypeAdult != null">
         room_type_adult = #{roomTypeAdult,jdbcType=VARCHAR},
       </if>
       <if test="roomTypeChild != null">
         room_type_child = #{roomTypeChild,jdbcType=VARCHAR},
       </if>
-      <if test="roomTypeWifi != null">
-        room_type_wifi = #{roomTypeWifi,jdbcType=VARCHAR},
-      </if>
-      <if test="roomTypeRoomService != null">
-        room_type_room_service = #{roomTypeRoomService,jdbcType=VARCHAR},
-      </if>
       <if test="roomTypeAvailableNumber != null">
         room_type_available_number = #{roomTypeAvailableNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="roomTypeBreakfast != null">
-        room_type_breakfast = #{roomTypeBreakfast,jdbcType=VARCHAR},
-      </if>
-      <if test="roomTypeLaundry != null">
-        room_type_laundry = #{roomTypeLaundry,jdbcType=VARCHAR},
-      </if>
-      <if test="roomTypeTransferService != null">
-        room_type_transfer_service = #{roomTypeTransferService,jdbcType=VARCHAR},
       </if>
       <if test="roomTypeIntrodution != null">
         room_type_introdution = #{roomTypeIntrodution,jdbcType=VARCHAR},
       </if>
       <if test="roomTypePic != null">
         room_type_pic = #{roomTypePic,jdbcType=VARCHAR},
+      </if>
+      <if test="facilityServiceId != null">
+        facility_service_id = #{facilityServiceId,jdbcType=INTEGER},
       </if>
     </set>
     where room_type_id = #{roomTypeId,jdbcType=INTEGER}
@@ -385,18 +300,12 @@
       room_type_name = #{roomTypeName,jdbcType=VARCHAR},
       room_type_price = #{roomTypePrice,jdbcType=VARCHAR},
       room_type_size = #{roomTypeSize,jdbcType=VARCHAR},
-      room_type_bed_type = #{roomTypeBedType,jdbcType=VARCHAR},
-      room_type_bed_number = #{roomTypeBedNumber,jdbcType=VARCHAR},
       room_type_adult = #{roomTypeAdult,jdbcType=VARCHAR},
       room_type_child = #{roomTypeChild,jdbcType=VARCHAR},
-      room_type_wifi = #{roomTypeWifi,jdbcType=VARCHAR},
-      room_type_room_service = #{roomTypeRoomService,jdbcType=VARCHAR},
       room_type_available_number = #{roomTypeAvailableNumber,jdbcType=VARCHAR},
-      room_type_breakfast = #{roomTypeBreakfast,jdbcType=VARCHAR},
-      room_type_laundry = #{roomTypeLaundry,jdbcType=VARCHAR},
-      room_type_transfer_service = #{roomTypeTransferService,jdbcType=VARCHAR},
       room_type_introdution = #{roomTypeIntrodution,jdbcType=VARCHAR},
-      room_type_pic = #{roomTypePic,jdbcType=VARCHAR}
+      room_type_pic = #{roomTypePic,jdbcType=VARCHAR},
+      facility_service_id = #{facilityServiceId,jdbcType=INTEGER}
     where room_type_id = #{roomTypeId,jdbcType=INTEGER}
   </update>
 </mapper>
