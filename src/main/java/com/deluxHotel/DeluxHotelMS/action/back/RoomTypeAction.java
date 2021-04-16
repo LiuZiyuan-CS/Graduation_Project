@@ -78,6 +78,7 @@ public class RoomTypeAction {
 				roomType.setRoomTypePic(roomTypePicAddr);
 				int facilityServiceId=facilityServiceBiz.addFacilityService(facilityService);
 				roomType.setFacilityServiceId(facilityServiceId);
+				roomType.setRoomTypeAvailableNumber("0");
 				roomTypeBiz.addRoomtype(roomType);
 			}
 		} catch (BizException e) {
