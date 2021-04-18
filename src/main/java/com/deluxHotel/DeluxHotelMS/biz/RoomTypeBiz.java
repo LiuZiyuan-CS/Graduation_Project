@@ -75,4 +75,8 @@ public class RoomTypeBiz {
 		roomTypeMapper.insertSelective(roomType);
 	}
 
+	public List<RoomType> loadAllRoomType() {
+		return roomTypeMapper.selectByExample(null);
+	}
+
 }

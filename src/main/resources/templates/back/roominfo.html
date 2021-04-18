@@ -1,0 +1,452 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+<title>员工一览</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Bootstrap Core CSS -->
+<link href="assets/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="assets/css/style.css" rel='stylesheet' type='text/css' />
+<!-- font CSS -->
+<!-- font-awesome icons -->
+<link href="assets/css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+<!--bootstrap-table  -->
+<link href="assets/css/bootstrap-table.css" rel="stylesheet">
+ <!-- js-->
+<script src="assets/js/jquery-1.11.1.min.js"></script>
+<script src="assets/js/modernizr.custom.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="assets/js/bootstrap.js"> </script>
+<!-- Bootstrap Table插件 -->
+<script src="assets/js/bootstrap-table.js" type="text/javascript" charset="utf-8"></script>
+<script src="assets/js/bootstrap-table-zh-CN.js" type="text/javascript" charset="utf-8"></script>
+<!-- 表单验证js -->
+<script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
+<!-- 表单验证js -->
+<!--webfonts-->
+<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<!--//webfonts--> 
+<!--animate-->
+<link href="assets/css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="assets/js/wow.min.js"></script>
+	<script>
+		 new WOW().init();
+	</script>
+<!--//end-animate-->
+<!-- Metis Menu -->
+<script src="assets/js/metisMenu.min.js"></script>
+<script src="assets/js/custom.js"></script>
+<link href="assets/css/custom.css" rel="stylesheet">
+<!--//Metis Menu -->
+</head> 
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+		<!--左侧导航栏-->
+		<div th:replace="back/left::left"></div>
+		<!--/左侧导航栏-->
+		<!-- 头部导航 -->
+		<div th:replace="back/header::header"></div>
+		<!-- /头部导航 -->
+		<!-- main content start-->
+		<div id="page-wrapper">
+			<div class="main-page">
+				<h3 class="title1">房间信息一览表</h3>
+				<div id="toolbar" class="btn-toolbar" role="toolbar">
+					<div class="btn-group">
+					    <button class="btn btn-primary fa fa-plus nav_icon" data-toggle="modal" data-target="#addRoomModal" type="button">&nbsp;新增房间</button>
+					</div>
+				</div>
+				<table id="roomInfoTable" class="table table-bordered">
+				</table>
+			</div>
+			<!-- /房间信息修改模态框 -->
+			<div class="modal fade" id="roomInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    <div class="modal-dialog modal-lg">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			               <h4 class="title3">房型服务信息</h4>
+			            </div>
+			            <div class="modal-body">
+							<form id="roomForm">
+								<div class="sign-u">
+									<div class="sign-up1">
+										<h4>房间号 :</h4>
+									</div>
+									<div class="sign-up2">
+										<input id="roomNumber" readonly="readonly" name="roomNumber" type="text" title="不可修改" >
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+								<div class="sign-u">
+									<div class="sign-up1">
+										<h4>房间类型 :</h4>
+									</div>
+									<div class="sign-up2">
+											<select id="roomTypeId" name="roomTypeId">
+											<option th:each="rt:${roomTypeList}" th:value="${rt.roomTypeId}" th:text="${rt.roomTypeName}+'(￥：'+${rt.roomTypePrice}+')'"></option>
+											</select>
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+								<div class="sign-u">
+									<div class="sign-up1">
+										<h4>房间状态 :</h4>
+									</div>
+									<div class="sign-up2">
+										<label>
+											<input type="radio"  value="1" name="roomStatus" >
+											可用
+										</label>
+										<label>
+											<input type="radio"  value="0" name="roomStatus" >
+											禁用
+										</label>
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+							</form>
+			            </div>
+			            <div class="modal-footer">
+			             <button id="roomUpdateBtn" type="button" class="btn btn-primary">修改</button>
+			                <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+			            </div>
+			        </div><!-- /.modal-content -->
+			    </div><!-- /.modal -->
+			</div>
+			<!-- /房间信息修改模态框 -->
+			<!-- /新增房间模态框 -->
+			<div class="modal fade" id="addRoomModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    <div class="modal-dialog modal-lg">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			               <h4 class="title3">房型服务信息</h4>
+			            </div>
+			            <div class="modal-body">
+							<form id="addRoomForm">
+								<div class="sign-u">
+									<div class="sign-up1">
+										<h4>房间号 :</h4>
+									</div>
+									<div class="sign-up2">
+										<input name="roomNumber" type="text" title="不可修改" >
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+								<div class="sign-u">
+									<div class="sign-up1">
+										<h4>房间类型 :</h4>
+									</div>
+									<div class="sign-up2">
+											<select name="roomTypeId">
+											<option value="-1">请选择房间类型</option>
+											<option th:each="rt:${roomTypeList}" th:value="${rt.roomTypeId}" th:text="${rt.roomTypeName}+'(￥：'+${rt.roomTypePrice}+')'"></option>
+											</select>
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+								<div class="sign-u">
+									<div class="sign-up1">
+										<h4>房间状态 :</h4>
+									</div>
+									<div class="sign-up2">
+										<label>
+											<input type="radio"  value="1" name="roomStatus" >
+											可用
+										</label>
+										<label>
+											<input type="radio"  value="0" name="roomStatus" >
+											禁用
+										</label>
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+							</form>
+			            </div>
+			            <div class="modal-footer">
+			             <button id="addRoomBtn" type="button" class="btn btn-primary" onclick="addRoom()">新增</button>
+			                <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+			            </div>
+			        </div><!-- /.modal-content -->
+			    </div><!-- /.modal -->
+			</div>
+			<!-- /新增房间模态框 -->
+		</div>
+	</div>
+	<!--footer-->
+		<div th:replace="back/footer::footer" class="footer"></div>
+        <!--//footer-->
+	<!-- Classie -->
+		<script src="assets/js/classie.js"></script>
+		<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				body = document.body;
+				
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeftPush' );
+			};
+			
+			function disableOther( button ) {
+				if( button !== 'showLeftPush' ) {
+					classie.toggle( showLeftPush, 'disabled' );
+				}
+			}
+		</script>
+	<!--scrolling js-->
+	<!-- <script src="assets/js/jquery.nicescroll.js"></script>
+	<script src="assets/js/scripts.js"></script> -->
+	<!--//scrolling js-->
+	<!-- 文件上传js -->
+	<script type="text/javascript" src="assets/js/jquery.iframe-transport.js"></script>
+	<script type="text/javascript" src="assets/js/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="assets/js/jquery.fileupload.js"></script>
+	<!-- /文件上传js -->
+	<!-- roominfo页面自编的js -->
+   	<script type="text/javascript">
+   	function banRoom(room){
+   		if(confirm("是否禁用该房间？")){
+   			$.post("banRoom",{roomId:room.roomId},function (result){
+   				if(result.resultCode==1){
+   					alert(result.message);
+   					$('#roomInfoTable').bootstrapTable('refresh');
+   				}else{
+   					alert("系统繁忙，请稍后再试");
+   				}
+   			})
+   		};
+   		
+   	}
+   	function enableRoom(room){
+   		if(confirm("是否启用该房间？")){
+   			$.post("enableRoom",{roomId:room.roomId},function (result){
+   				if(result.resultCode==1){
+   					alert(result.message);
+   					$('#roomInfoTable').bootstrapTable('refresh');
+   				}else{
+   					alert("系统繁忙，请稍后再试");
+   				}
+   			})
+   		};
+   	}
+   	function updateRoom(room){
+   		$('#roomNumber').val(room.roomNumber);
+   		$("input[name=roomStatus][value="+room.roomStatus+"]").attr("checked","checked"); 
+   		$('#roomTypeId').find("option[value=" + room.roomType.roomTypeId + "]")
+		.prop("selected", "selected");
+   		$("#roomUpdateBtn").attr("disabled","disabled");
+   		$('#roomUpdateBtn').on("click",function(){
+  			 if($("#roomForm").valid()){
+  				$.post("updateRoomInfo",$("#roomForm").serialize(),function(result){
+  						if(result.resultCode==1){
+  							alert(result.message);
+  							$('#roomInfoModal').modal('hide');
+  							$('#roomInfoTable').bootstrapTable('refresh')
+  						}else{
+  							alert("系统繁忙请稍后再试");
+  						}
+  					});
+  			}else{
+  				alert("请将表单填写完整再提交")
+  			} 
+  		});
+   		$('#roomInfoModal').modal('show');
+   	}
+	$("input[name=roomStatus]").change(function() {
+   		$("#roomUpdateBtn").removeAttr("disabled");
+   	});
+	$("#roomTypeId").change(function() {
+   		$("#roomUpdateBtn").removeAttr("disabled");
+   	});
+	/*新增房间表单验证*/
+	$("#addRoomForm").validate({
+		rules : {
+			roomNumber : {
+				required : true,
+				digits:true,
+			},
+			roomTypeId : {
+				required : true,
+			},
+			roomStatus : {
+				required : true,
+			},
+		},
+		messages : {
+			roomNumber : {
+				required : '请填写房间号',
+				digits:'请勿填写除数字外的其他字符',
+			},
+			roomTypeId : {
+				required : "请选择房间类型",
+			},
+			roomStatus : {
+				required : "请选择房间状态",
+			},
+		},
+		errorElement : "em",
+		sucess : function(em) {
+			label.text(" ").addClass("success");
+		}
+
+	});
+	function addRoom(){
+		if($('#addRoomForm').valid()){
+			$.post('addRoom',$('#addRoomForm').serialize(),function(result){
+				if(result.resultCode==1){
+					alert(result.message);
+					$('#addRoomModal').modal('hide');
+					$('#roomInfoTable').bootstrapTable('refresh');
+				}else{
+					alert(result.message);
+					$('#addRoomModal').modal('hide');
+					$('#roomInfoTable').bootstrapTable('refresh');
+				}
+			})
+		}else{
+			alert("请将信息填写完整在提交");
+		}
+	}
+   	/* 表格加载 */
+   	$('#roomInfoTable')
+   			.bootstrapTable(
+   					{
+   						method : "POST",
+   						contentType : "application/x-www-form-urlencoded",
+   						dataType : "json",
+   						url : "loadRoomInfo", // 执行加载表格的PostMapping
+   						pagination : true, // 分页
+   						striped : true, // 是否显示行间隔色
+   						search : false, // 显示搜索框
+   						sidePagination : "server", // 服务端处理分页
+   						showRefresh : true,
+   						pageNumber : 1, // 初始化加载第一页，默认第一页
+   						pageSize : 10, // 每页的记录行数（*）
+   						pageList : [ 5, 10, 15, 20 ],
+   						classes : "table table-bordered table-striped table-sm ", // 这里设置表格样式
+   						toolbar : '#toolbar',
+   						detailView: false, //扩展子表
+   						showToggle : true, // 是否显示详细视图和列表视图的切换按钮
+   						showColumns : true, // 是否显示所有的列
+   						cardView : false, // 是否显示详细视图
+   						queryParams : function queryParams(params) {
+   							params.search = this.search;
+   							params.pageNumber = this.pageNumber;
+   							return params;
+   						},
+   						sidePagination : "server",
+   						responseHandler : function(result) {
+   							// console.log(result);
+   							return {
+   								"total" : result.total,// 总页数
+   								"rows" : result.list
+   							// 数据
+   							}
+   						},
+   						columns : [
+	   							{
+	   				                checkbox: true,
+	   				            },
+   								{
+   									field : 'roomNumber',
+   									sortable : true,
+   									title : '房间号'
+   								},
+   								{
+   									field : 'roomType.roomTypeName',
+   									sortable : true,
+   									title : '房间名',
+   								},
+   								{
+   									field : 'roomType.roomTypePrice',
+   									sortable : true,
+   									title : '房间价格',
+   								},
+   								{
+   									field : 'roomStatus',
+   									sortable : true,
+   									title : '房间状态',
+   									formatter : function formatStatus( value, row, index) { 
+				   										var str; 
+				   										switch (value) { 
+					   										case "0": 
+					   											str ="禁用";
+					   											break;
+					   										case "1": 
+					   											str ="可用";
+					   											break; 
+					   										case "2": 
+					   											str ="正在使用";
+					   											break;
+				   										}
+			   										  return str;
+			   										  },
+   								/*
+   								 * formatter:function formatDate(value,row,index){
+   								 * var d = new Date(value); var
+   								 * times=d.getFullYear() + '年' + (d.getMonth() + 1) +
+   								 * '月' + d.getDate() + '日 ' + d.getHours() + ':' +
+   								 * d.getMinutes() + ':' + d.getSeconds(); return
+   								 * times; }
+   								 */
+   								},
+   								{
+   									field : 'roomStatus',
+   									title : '操作',
+   									formatter : function formatOperate(value, row, index) {
+   										// 通过formatter可以自定义列显示的内容
+   										// value：当前field的值，即id
+   										// row：当前行的数据
+   										var room = JSON.stringify(row);
+   										var prefix="111";
+   										var suffix="111";
+   										switch(value){
+   											case "0":
+   												prefix="<a class='btn btn-xs blue'  title='启用' onclick='enableRoom(";
+   												suffix=")'><span class='	glyphicon glyphicon-ok'></span></a>";
+   												break;
+   											case "1":
+   												prefix="<a class='btn btn-xs blue'  title='禁用' onclick='banRoom(";
+   												suffix=")'><span class='	glyphicon glyphicon-ban-circle'></span></a>";
+   												break;
+   											case "2":
+   												prefix="";
+   												suffix="";
+   												break;
+   										};
+   										var result = "";
+   											result += "<a class='btn btn-xs blue'  title='修改' onclick='updateRoom("
+   													+ room
+   													+ ")'><span class='glyphicon glyphicon-pencil'></span></a>"
+   													+prefix+room+suffix   													
+   													+ "<a class='btn btn-xs red'  title='删除' onclick='deleteRoomType("
+   													+ room
+   													+ ")'><span class='	glyphicon glyphicon-remove'></span></a>";
+   										return result;
+   									} 
+   								}, ],
+   					// 注册加载子表的事件。注意下这里的三个参数！
+   					// index：父表当前行的行索引。	
+   					// row：父表当前行的Json数据对象。
+   					// $detail：当前行下面创建的新行里面的td对象。
+   				
+   						 /* onExpandRow: function (index, row, $detail) {
+   					  		//console.log(row); 
+	   					  	//if(row.consumptionType==1){
+	   					  		InitSubTable(index, row, $detail); 
+	   					  	//}  
+   					  }*/
+
+   					});
+   	</script>
+   	<!-- /roominfo页面自编的js -->
+</body>
+</html>

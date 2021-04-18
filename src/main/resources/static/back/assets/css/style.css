@@ -1735,6 +1735,15 @@ p.creating {
 .sign-up2 input[type="text"]:focus ,.sign-up2 input[type="password"]:focus{
     border-color: #e94e02;
 }
+.sign-up2 select[name=roomTypeId]{
+	outline:none;
+	border: 1px solid #D0D0D0;
+    background: none;
+    font-size: 14px;
+	padding:10px 10px;
+	width:100%;
+	margin:1em 0;
+}
 .signup-page h5,.signup-page h6{
 	margin: 0 0 1em;
     color:#6164C1;

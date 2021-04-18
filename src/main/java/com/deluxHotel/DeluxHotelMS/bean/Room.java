@@ -9,6 +9,8 @@ public class Room {
 
     private Integer roomTypeId;
 
+    private RoomType roomType;
+    
     public Integer getRoomId() {
         return roomId;
     }
@@ -40,4 +42,14 @@ public class Room {
     public void setRoomTypeId(Integer roomTypeId) {
         this.roomTypeId = roomTypeId;
     }
+
+	public RoomType getRoomType() {
+		return roomType;
+	}
+
+	public void setRoomType(RoomType roomType) {
+		this.roomType = roomType;
+	}
+    
+    
 }

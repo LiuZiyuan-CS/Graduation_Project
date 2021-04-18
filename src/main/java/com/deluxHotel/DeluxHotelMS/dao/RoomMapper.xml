@@ -6,6 +6,7 @@
     <result column="room_number" jdbcType="VARCHAR" property="roomNumber" />
     <result column="room_status" jdbcType="VARCHAR" property="roomStatus" />
     <result column="room_type_id" jdbcType="INTEGER" property="roomTypeId" />
+    <association property="roomType" column="room_type_id" select="com.deluxHotel.DeluxHotelMS.dao.RoomTypeMapper.selectByPrimaryKey"></association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
